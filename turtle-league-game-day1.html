@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turtle League 2026 Leaderboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 32px;
+      color: #1a1a1a;
+    }
+    
+    .section {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .section h2 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th {
+      text-align: left;
+      padding: 12px 8px;
+      border-bottom: 2px solid #ddd;
+      font-weight: 600;
+      font-size: 13px;
+      color: #666;
+      text-transform: uppercase;
+    }
+    
+    td {
+      padding: 12px 8px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    tr:hover {
+      background: #fafafa;
+    }
+    
+    .team-name {
+      font-weight: 500;
+      font-size: 15px;
+    }
+    
+    .team-orange { color: #ff8c00; }
+    .team-blue { color: #0066cc; }
+    .team-white { color: #333; }
+    .team-green { color: #22a447; }
+    
+    .match {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .match:last-child {
+      border-bottom: none;
+    }
+    
+    .match-day {
+      width: 80px;
+      color: #999;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    
+    .match-score {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .match-team {
+      flex: 0 0 80px;
+      text-align: right;
+      font-weight: 500;
+    }
+    
+    .match-goals {
+      flex: 0 0 40px;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    .match-scorers {
+      flex: 1;
+      color: #999;
+      font-size: 12px;
+    }
+
+    .team-section {
+      margin-bottom: 20px;
+    }
+
+    .team-section h3 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .scorer-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+    }
+
+    .scorer-row:last-child {
+      border-bottom: none;
+    }
+
+    .scorer-name {
+      flex: 1;
+    }
+
+    .scorer-goals {
+      font-weight: 600;
+      color: #0066cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🐢 Turtle League 2026</h1>
+    
+    <div class="section">
+      <h2>Standings</h2>
+      <table id="standings-table">
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th style="width: 50px;">W</th>
+            <th style="width: 50px;">D</th>
+            <th style="width: 50px;">L</th>
+            <th style="width: 60px;">Pts</th>
+          </tr>
+        </thead>
+        <tbody id="standings-body"></tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>⚽ Golden Boot</h2>
+      <div id="golden-boot"></div>
+    </div>
+
+    <div class="section">
+      <h2>🏆 Golden Team</h2>
+      <div id="golden-team"></div>
+    </div>
+    
+    <div class="section">
+      <h2>Match History</h2>
+      <div id="matches-list"></div>
+    </div>
+  </div>
+
+  <script>
+    const rawData = `Game Day	Field	Game #	Game 	Team	Goal	Goalscorer
+1	1	1	Blue v Orange	Blue	1	Alma
+1	1	1	Blue v Orange	Blue	1	Em G
+1	2	1	White v Green	White	1	Agustina
+1	2	1	White v Green	White	1	Agustina
+1	2	1	White v Green	White	1	Paloma (FA)
+1	1	2	Blue v Green	Blue	1	Margaret (FA)
+1	1	2	Blue v Green	Blue	1	Jane
+1	1	2	Blue v Green	Green	1	Vera
+1	2	2	Orange v White	Orange	1	Asya
+1	2	2	Orange v White	Orange	1	Olive (FA)
+1	2	2	Orange v White	White	1	Agustina`;
+
+    function parseData() {
+      const lines = rawData.trim().split('\n');
+      const games = {};
+
+      lines.slice(1).forEach(line => {
+        const parts = line.split('\t');
+        const gameDay = parts[0];
+        const gameStr = parts[3];
+        const team = parts[4];
+        const goalscorer = parts[6];
+
+        const key = `${gameDay}:${gameStr}`;
+        
+        if (!games[key]) {
+          const [t1, t2] = gameStr.split(' v ');
+          games[key] = {
+            gameDay,
+            teams: [t1.trim(), t2.trim()],
+            goals: { [t1.trim()]: 0, [t2.trim()]: 0 },
+            scorers: {}
+          };
+        }
+
+        games[key].goals[team]++;
+        if (!games[key].scorers[team]) games[key].scorers[team] = [];
+        games[key].scorers[team].push(goalscorer);
+      });
+
+      return Object.values(games);
+    }
+
+    function calculateStandings(games) {
+      const standings = {
+        Orange: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 },
+        Blue: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 },
+        White: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 },
+        Green: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 }
+      };
+
+      games.forEach(game => {
+        const [t1, t2] = game.teams;
+        const g1 = game.goals[t1];
+        const g2 = game.goals[t2];
+
+        standings[t1].gf += g1;
+        standings[t1].ga += g2;
+        standings[t2].gf += g2;
+        standings[t2].ga += g1;
+
+        if (g1 > g2) {
+          standings[t1].wins++;
+          standings[t1].points += 3;
+          standings[t2].losses++;
+        } else if (g2 > g1) {
+          standings[t2].wins++;
+          standings[t2].points += 3;
+          standings[t1].losses++;
+        } else {
+          standings[t1].draws++;
+          standings[t1].points++;
+          standings[t2].draws++;
+          standings[t2].points++;
+        }
+      });
+
+      return Object.entries(standings)
+        .map(([name, stats]) => ({ name, ...stats }))
+        .sort((a, b) => b.points - a.points);
+    }
+
+    function calculateGoldenBoot(games) {
+      const scorers = {};
+
+      games.forEach(game => {
+        ['team1', 'team2'].forEach((teamKey, idx) => {
+          const t = game.teams[idx];
+          if (game.scorers[t]) {
+            game.scorers[t].forEach(scorer => {
+              if (!scorers[scorer]) scorers[scorer] = 0;
+              scorers[scorer]++;
+            });
+          }
+        });
+      });
+
+      return Object.entries(scorers)
+        .map(([name, goals]) => ({ name, goals }))
+        .sort((a, b) => b.goals - a.goals);
+    }
+
+    function calculateGoldenTeam(games) {
+      const teamScorers = {
+        Orange: new Set(),
+        Blue: new Set(),
+        White: new Set(),
+        Green: new Set()
+      };
+
+      games.forEach(game => {
+        ['team1', 'team2'].forEach((teamKey, idx) => {
+          const t = game.teams[idx];
+          if (game.scorers[t]) {
+            game.scorers[t].forEach(scorer => {
+              teamScorers[t].add(scorer);
+            });
+          }
+        });
+      });
+
+      return Object.entries(teamScorers)
+        .map(([name, scorersSet]) => ({ name, scorerCount: scorersSet.size, scorers: Array.from(scorersSet) }))
+        .sort((a, b) => b.scorerCount - a.scorerCount);
+    }
+
+    function renderStandings(teams) {
+      const tbody = document.getElementById('standings-body');
+      tbody.innerHTML = teams.map(team => `
+        <tr>
+          <td class="team-name team-${team.name.toLowerCase()}">${team.name}</td>
+          <td>${team.wins}</td>
+          <td>${team.draws}</td>
+          <td>${team.losses}</td>
+          <td><strong>${team.points}</strong></td>
+        </tr>
+      `).join('');
+    }
+
+    function renderGoldenBoot(scorers) {
+      const container = document.getElementById('golden-boot');
+      if (scorers.length === 0) {
+        container.innerHTML = '<div style="color: #999; padding: 20px;">No goals scored yet</div>';
+        return;
+      }
+      
+      container.innerHTML = scorers.map((scorer, idx) => `
+        <div class="scorer-row">
+          <span style="color: #999; margin-right: 12px;">${idx + 1}.</span>
+          <div class="scorer-name">${scorer.name}</div>
+          <div class="scorer-goals">${scorer.goals}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderGoldenTeam(teams) {
+      const container = document.getElementById('golden-team');
+      container.innerHTML = teams.map(team => `
+        <div class="team-section">
+          <h3><span class="team-${team.name.toLowerCase()}">${team.name}</span> (${team.scorerCount} scorers)</h3>
+          ${team.scorers.map(scorer => `
+            <div class="scorer-row">
+              <div class="scorer-name">${scorer}</div>
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    function renderMatches(games) {
+      const list = document.getElementById('matches-list');
+      const sorted = games.sort((a, b) => parseInt(b.gameDay) - parseInt(a.gameDay));
+
+      list.innerHTML = sorted.map(game => {
+        const [t1, t2] = game.teams;
+        const g1 = game.goals[t1];
+        const g2 = game.goals[t2];
+        const scorersStr = [
+          ...(game.scorers[t1] || []).map(s => `${s} (${t1})`),
+          ...(game.scorers[t2] || []).map(s => `${s} (${t2})`)
+        ].join(', ');
+
+        return `
+          <div class="match">
+            <div class="match-day">Game Day ${game.gameDay}</div>
+            <div class="match-score">
+              <div class="match-team team-${t1.toLowerCase()}">${t1}</div>
+              <div class="match-goals">${g1} - ${g2}</div>
+              <div class="match-team team-${t2.toLowerCase()}">${t2}</div>
+              ${scorersStr ? `<div class="match-scorers">${scorersStr}</div>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    const games = parseData();
+    const standings = calculateStandings(games);
+    const goldenBoot = calculateGoldenBoot(games);
+    const goldenTeam = calculateGoldenTeam(games);
+    
+    renderStandings(standings);
+    renderGoldenBoot(goldenBoot);
+    renderGoldenTeam(goldenTeam);
+    renderMatches(games);
+  </script>
+</body>
+</html>
