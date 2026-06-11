@@ -164,7 +164,7 @@
     <h1>🐢 Turtle League 2026</h1>
     
     <div class="section">
-      <h2>Standings</h2>
+      <h2>🏆 Standings</h2>
       <table id="standings-table">
         <thead>
           <tr>
@@ -180,13 +180,13 @@
     </div>
 
     <div class="section">
-      <h2>⚽ Golden Boot</h2>
-      <div id="golden-boot"></div>
+      <h2>🏆 Golden Team</h2>
+      <div id="golden-team"></div>
     </div>
 
     <div class="section">
-      <h2>🏆 Golden Team</h2>
-      <div id="golden-team"></div>
+      <h2>⚽ Golden Boot</h2>
+      <div id="golden-boot"></div>
     </div>
     
     <div class="section">
@@ -379,6 +379,18 @@
           ...(game.scorers[t2] || []).map(s => `${s} (${t2})`)
         ].join(', ');
 
+        let p1, p2;
+        if (g1 > g2) {
+          p1 = 3;
+          p2 = 0;
+        } else if (g2 > g1) {
+          p1 = 0;
+          p2 = 3;
+        } else {
+          p1 = 1;
+          p2 = 1;
+        }
+
         return `
           <div class="match">
             <div class="match-day">Game Day ${game.gameDay}</div>
@@ -386,6 +398,7 @@
               <div class="match-team team-${t1.toLowerCase()}">${t1}</div>
               <div class="match-goals">${g1} - ${g2}</div>
               <div class="match-team team-${t2.toLowerCase()}">${t2}</div>
+              <div class="match-points" style="font-size: 12px; color: #666; margin-left: 8px;">${t1} +${p1}, ${t2} +${p2}</div>
               ${scorersStr ? `<div class="match-scorers">${scorersStr}</div>` : ''}
             </div>
           </div>
