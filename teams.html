@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Turtle League 2026 Teams</title>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -16,6 +17,33 @@
       background: #f5f5f5;
       padding: 20px;
       color: #333;
+      padding-top: 80px;
+    }
+    
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 16px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      font-family: 'Young Serif', serif;
     }
     
     .container {
@@ -28,30 +56,6 @@
       margin-bottom: 40px;
       font-size: 32px;
       color: #1a1a1a;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      padding: 8px 16px;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      text-decoration: none;
-      color: #0066cc;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-
-    .nav a:hover {
-      background: #0066cc;
-      color: white;
     }
 
     .teams-grid {
@@ -72,6 +76,7 @@
       color: white;
       font-weight: 600;
       font-size: 18px;
+      font-family: 'Young Serif', serif;
     }
 
     .team-blue .team-header {
@@ -119,17 +124,45 @@
     .player:last-child {
       border-bottom: none;
     }
+
+    .nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      padding: 6px 12px;
+      background: transparent;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #0066cc;
+      font-weight: 500;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .nav a:hover {
+      background: #0066cc;
+      color: white;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🐢 Turtle League 2026 Teams</h1>
-
-    <div class="nav">
-      <a href="index.html">Leaderboard</a>
-      <a href="schedule.html">Schedule & RSVP</a>
-      <a href="teams.html">Teams</a>
+  <div class="header">
+    <div class="header-content">
+      <div class="header-title">🐢 Turtle League 2026</div>
+      <div class="nav">
+        <a href="index.html">Leaderboard</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="teams.html">Teams</a>
+      </div>
     </div>
+  </div>
+
+  <div class="container">
+    <h1 style="font-size: 20px; margin-bottom: 40px;">Teams</h1>
 
     <div class="teams-grid" id="teams-container"></div>
   </div>

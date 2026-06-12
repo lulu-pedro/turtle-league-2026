@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Turtle League 2026 Schedule</title>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -16,6 +17,33 @@
       background: #f5f5f5;
       padding: 20px;
       color: #333;
+      padding-top: 80px;
+    }
+    
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 16px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      font-family: 'Young Serif', serif;
     }
     
     .container {
@@ -30,30 +58,6 @@
       color: #1a1a1a;
     }
 
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      padding: 8px 16px;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      text-decoration: none;
-      color: #0066cc;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-
-    .nav a:hover {
-      background: #0066cc;
-      color: white;
-    }
-
     .section {
       background: white;
       border-radius: 8px;
@@ -66,6 +70,7 @@
       font-size: 18px;
       margin-bottom: 16px;
       color: #1a1a1a;
+      font-family: 'Young Serif', serif;
     }
 
     .rules {
@@ -134,6 +139,7 @@
       color: #1a1a1a;
       border-bottom: 2px solid #ddd;
       padding-bottom: 8px;
+      font-family: 'Young Serif', serif;
     }
 
     .time-slot {
@@ -206,32 +212,44 @@
       border-left: 4px solid #ff8c00;
     }
 
-    @media (max-width: 600px) {
-      .game {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-      .game-buttons {
-        width: 100%;
-      }
+    .nav a {
+      padding: 6px 12px;
+      background: transparent;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #0066cc;
+      font-weight: 500;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
 
-      .btn {
-        flex: 1;
-        text-align: center;
-      }
+    .nav a:hover {
+      background: #0066cc;
+      color: white;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🐢 Turtle League 2026 Schedule</h1>
-
-    <div class="nav">
-      <a href="index.html">Leaderboard</a>
-      <a href="schedule.html">Schedule & RSVP</a>
-      <a href="teams.html">Teams</a>
+  <div class="header">
+    <div class="header-content">
+      <div class="header-title">🐢 Turtle League 2026</div>
+      <div class="nav">
+        <a href="index.html">Leaderboard</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="teams.html">Teams</a>
+      </div>
     </div>
+  </div>
+
+  <div class="container">
+    <h1 style="font-size: 20px; margin-bottom: 24px;">Schedule & RSVP</h1>
 
     <div class="section rules">
       <h2>House Rules</h2>
@@ -395,7 +413,7 @@
       },
       {
         gameDay: "PLAYOFFS FINALS",
-        isPLayoff: true,
+        isPlayoff: true,
         slots: [
           {
             time: "6:30 PM",
