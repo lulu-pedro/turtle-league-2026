@@ -78,6 +78,30 @@
     .team-white { color: #333; }
     .team-green { color: #22a447; }
     
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      padding: 8px 16px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #0066cc;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .nav a:hover {
+      background: #0066cc;
+      color: white;
+    }
+    
     .match {
       display: flex;
       align-items: center;
@@ -90,6 +114,12 @@
     
     .match:last-child {
       border-bottom: none;
+    }
+
+    .match:nth-child(odd) {
+      background: #fafafa;
+      padding: 12px 8px;
+      margin: 0 -8px;
     }
     
     .match-day {
@@ -119,10 +149,22 @@
       font-weight: 600;
     }
     
-    .match-scorers {
-      flex: 1;
-      color: #999;
+    .match-points {
       font-size: 12px;
+      color: #666;
+      margin-left: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .match-score {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .match-points {
+        margin-left: 0;
+        margin-top: 8px;
+      }
     }
 
     .team-section {
@@ -162,6 +204,12 @@
 <body>
   <div class="container">
     <h1>🐢 Turtle League 2026</h1>
+    
+    <div class="nav">
+      <a href="index.html">Leaderboard</a>
+      <a href="schedule.html">Schedule & RSVP</a>
+      <a href="teams.html">Teams</a>
+    </div>
     
     <div class="section">
       <h2>🏆 Standings</h2>
@@ -398,7 +446,7 @@
               <div class="match-team team-${t1.toLowerCase()}">${t1}</div>
               <div class="match-goals">${g1} - ${g2}</div>
               <div class="match-team team-${t2.toLowerCase()}">${t2}</div>
-              <div class="match-points" style="font-size: 12px; color: #666; margin-left: 8px;">${t1} +${p1}, ${t2} +${p2}</div>
+              <div class="match-points">${t1} +${p1}, ${t2} +${p2}</div>
               ${scorersStr ? `<div class="match-scorers">${scorersStr}</div>` : ''}
             </div>
           </div>
