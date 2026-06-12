@@ -131,6 +131,8 @@
 
     .game-day {
       margin-bottom: 32px;
+      padding-left: 16px;
+      border-left: 4px solid #ddd;
     }
 
     .game-day h3 {
@@ -140,6 +142,14 @@
       border-bottom: 2px solid #ddd;
       padding-bottom: 8px;
       font-family: 'Young Serif', serif;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .game-day-links {
+      display: flex;
+      gap: 8px;
     }
 
     .time-slot {
@@ -187,6 +197,7 @@
       text-decoration: none;
       display: inline-block;
       transition: all 0.2s;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     .btn-luma {
@@ -208,8 +219,14 @@
     }
 
     .playoff-section {
-      background: #fff8e6;
+      background: white;
       border-left: 4px solid #ff8c00;
+      padding-left: 16px;
+    }
+
+    .playoff-section .game-day h3 {
+      color: #ff8c00;
+      border-bottom: 1px solid #ffe6cc;
     }
 
     .nav {
@@ -274,7 +291,7 @@
           <ol>
             <li><strong>Opens Thursdays:</strong> RSVP window opens each Thursday on Luma</li>
             <li><strong>RSVP on Luma:</strong> Click the Luma link for your game day and confirm attendance</li>
-            <li><strong>Tell your team:</strong> Message your captain and teammates to let them know you're playing</li>
+            <li><strong>Team captains see your status:</strong> Captains will see on Luma who is going or not going</li>
             <li><strong>Last-minute drop:</strong> Update your status on Luma and notify your captain + team. Laura will see the change and manage the waitlist</li>
           </ol>
         </div>
@@ -287,12 +304,10 @@
         </div>
         <div class="accordion-content">
           <ol>
-            <li><strong>Sign up on Meetup:</strong> Click the Meetup link on Sunday and claim your spot</li>
-            <li><strong>Pay on Luma:</strong> After signing up on Meetup, you'll pay $8 per game on Luma</li>
-            <li><strong>Waitlist:</strong> If full, you're added to the waitlist on Meetup. Laura manages this</li>
-            <li><strong>Tuesday night:</strong> Laura proposes team assignments to captains for approval</li>
-            <li><strong>Game day:</strong> Find Laura when you arrive and she'll confirm your team assignment</li>
-            <li><strong>If running late:</strong> Message the general WhatsApp chat to let everyone know</li>
+            <li><strong>Sign up on Sunday at 8pm:</strong> Click the Meetup link and mark yourself as attending</li>
+            <li><strong>If you're marked as attending, you're in:</strong> You're filling in for a rostered player who is out</li>
+            <li><strong>Tuesday PM payment:</strong> Watch for a Luma link to pay $8/game (emailed directly or posted in Meetup chat)</li>
+            <li><strong>Show up early:</strong> Arrive 5-10 minutes before game time to find out what team you're assigned to</li>
           </ol>
         </div>
       </div>
@@ -300,6 +315,20 @@
 
     <div class="section">
       <h2>Game Schedule</h2>
+      
+      <div style="margin-bottom: 24px; padding: 16px; background: #f0f4ff; border-radius: 6px;">
+        <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 20px; height: 20px; background: #6366f1; border-radius: 3px;"></div>
+            <span style="font-weight: 500;">Team RSVP (Luma)</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 20px; height: 20px; background: #ff5469; border-radius: 3px;"></div>
+            <span style="font-weight: 500;">Free Agent RSVP (Meetup)</span>
+          </div>
+        </div>
+      </div>
+
       <div id="schedule-container"></div>
     </div>
   </div>
@@ -307,7 +336,29 @@
   <script>
     const scheduleData = [
       {
+        gameDay: 1,
+        date: "Wed, June 10",
+        isCompleted: true,
+        slots: [
+          {
+            time: "6:30 PM",
+            games: [
+              { field: 1, team1: "Blue", team2: "Orange", score: "2 - 0", result: true },
+              { field: 2, team1: "White", team2: "Green", score: "3 - 0", result: true }
+            ]
+          },
+          {
+            time: "7:30 PM",
+            games: [
+              { field: 1, team1: "Blue", team2: "Green", score: "2 - 1", result: true },
+              { field: 2, team1: "Orange", team2: "White", score: "2 - 1", result: true }
+            ]
+          }
+        ]
+      },
+      {
         gameDay: 2,
+        date: "Wed, June 17",
         slots: [
           {
             time: "6:30 PM",
@@ -329,6 +380,7 @@
       },
       {
         gameDay: 3,
+        date: "Tues, June 23",
         slots: [
           {
             time: "6:30 PM",
@@ -350,6 +402,7 @@
       },
       {
         gameDay: 4,
+        date: "Tues, July 7",
         slots: [
           {
             time: "6:30 PM",
@@ -371,6 +424,7 @@
       },
       {
         gameDay: 5,
+        date: "Tues, July 14",
         slots: [
           {
             time: "6:30 PM",
@@ -392,6 +446,7 @@
       },
       {
         gameDay: 6,
+        date: "Tues, July 21",
         slots: [
           {
             time: "6:30 PM",
@@ -413,6 +468,7 @@
       },
       {
         gameDay: "PLAYOFFS FINALS",
+        date: "Tues, July 28",
         isPlayoff: true,
         slots: [
           {
@@ -437,21 +493,30 @@
       
       container.innerHTML = scheduleData.map(day => `
         <div class="game-day ${day.isPlayoff ? 'playoff-section' : ''}">
-          <h3>Game Day ${day.gameDay}</h3>
+          <h3>
+            <div>
+              <span>Game Day ${day.gameDay}</span>
+              <span style="font-size: 13px; font-weight: 400; color: #666; margin-left: 12px;">${day.date}</span>
+            </div>
+            ${!day.isPlayoff && !day.isCompleted ? `
+              <div class="game-day-links">
+                <a href="${day.luma}" class="btn btn-luma" target="_blank">Roster Player RSVP</a>
+                <a href="${day.meetup}" class="btn btn-meetup" target="_blank">Free Agent RSVP</a>
+              </div>
+            ` : ''}
+          </h3>
           ${day.slots.map(slot => `
             <div class="time-slot">
               <div class="time-label">${slot.time}</div>
               ${slot.games.map(game => `
                 <div class="game">
                   <div class="game-info">
-                    Field ${game.field}: <strong>${game.team1}</strong> vs <strong>${game.team2}</strong>
+                    ${day.isCompleted ? `
+                      <strong>${game.team1}</strong> ${game.score} <strong>${game.team2}</strong>
+                    ` : `
+                      Field ${game.field}: <strong>${game.team1}</strong> vs <strong>${game.team2}</strong>
+                    `}
                   </div>
-                  ${!day.isPlayoff ? `
-                    <div class="game-buttons">
-                      <a href="${day.luma}" class="btn btn-luma" target="_blank">Luma</a>
-                      <a href="${day.meetup}" class="btn btn-meetup" target="_blank">Meetup</a>
-                    </div>
-                  ` : ''}
                 </div>
               `).join('')}
             </div>
