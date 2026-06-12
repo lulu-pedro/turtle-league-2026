@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turtle League 2026 Schedule</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 32px;
+      color: #1a1a1a;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      padding: 8px 16px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #0066cc;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .nav a:hover {
+      background: #0066cc;
+      color: white;
+    }
+
+    .section {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .section h2 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+
+    .rules {
+      line-height: 1.8;
+    }
+
+    .rules ol {
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    .rules li {
+      margin-bottom: 12px;
+    }
+
+    .accordion {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .accordion-header {
+      padding: 16px;
+      background: #f9f9f9;
+      cursor: pointer;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+
+    .accordion-header:hover {
+      background: #f0f0f0;
+    }
+
+    .accordion-header.active {
+      background: #e8f0fe;
+    }
+
+    .accordion-content {
+      padding: 16px;
+      display: none;
+      line-height: 1.8;
+    }
+
+    .accordion-content.active {
+      display: block;
+    }
+
+    .accordion-content ol {
+      margin-left: 20px;
+    }
+
+    .accordion-content li {
+      margin-bottom: 12px;
+    }
+
+    .game-day {
+      margin-bottom: 32px;
+    }
+
+    .game-day h3 {
+      font-size: 16px;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 8px;
+    }
+
+    .time-slot {
+      margin-bottom: 16px;
+    }
+
+    .time-label {
+      font-weight: 600;
+      color: #666;
+      font-size: 13px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .game {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: #fafafa;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .game-info {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .game-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    .btn-luma {
+      background: #6366f1;
+      color: white;
+    }
+
+    .btn-luma:hover {
+      background: #4f46e5;
+    }
+
+    .btn-meetup {
+      background: #ff5469;
+      color: white;
+    }
+
+    .btn-meetup:hover {
+      background: #e74451;
+    }
+
+    .playoff-section {
+      background: #fff8e6;
+      border-left: 4px solid #ff8c00;
+    }
+
+    @media (max-width: 600px) {
+      .game {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .game-buttons {
+        width: 100%;
+      }
+
+      .btn {
+        flex: 1;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🐢 Turtle League 2026 Schedule</h1>
+
+    <div class="nav">
+      <a href="index.html">Leaderboard</a>
+      <a href="schedule.html">Schedule & RSVP</a>
+      <a href="teams.html">Teams</a>
+    </div>
+
+    <div class="section rules">
+      <h2>House Rules</h2>
+      <ol>
+        <li>This is a mixed-level league. We are competitive but kind. This isn't footy league. Bring good energy and respect. Zero tolerance for meanness or aggressive behaviors. If you're spoken to more than three times about your behavior toward others, you will be asked to be on the sideline and possibly sit out from future games.</li>
+        <li>Don't hurt each other physically or verbally. Be respectful to your teammates and your opponents. No slide tackles.</li>
+        <li>Pause for injuries.</li>
+        <li>There are no official goalkeepers in this league. Captains are permitted to dedicate a central defender as a sweeper keeper type role. No hands.</li>
+        <li>We self-officiate on the honor system. Captains make the difficult calls.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h2>How to RSVP</h2>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>Rostered Players</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <ol>
+            <li><strong>Opens Thursdays:</strong> RSVP window opens each Thursday on Luma</li>
+            <li><strong>RSVP on Luma:</strong> Click the Luma link for your game day and confirm attendance</li>
+            <li><strong>Tell your team:</strong> Message your captain and teammates to let them know you're playing</li>
+            <li><strong>Last-minute drop:</strong> Update your status on Luma and notify your captain + team. Laura will see the change and manage the waitlist</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>Free Agents</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <ol>
+            <li><strong>Sign up on Meetup:</strong> Click the Meetup link on Sunday and claim your spot</li>
+            <li><strong>Pay on Luma:</strong> After signing up on Meetup, you'll pay $8 per game on Luma</li>
+            <li><strong>Waitlist:</strong> If full, you're added to the waitlist on Meetup. Laura manages this</li>
+            <li><strong>Tuesday night:</strong> Laura proposes team assignments to captains for approval</li>
+            <li><strong>Game day:</strong> Find Laura when you arrive and she'll confirm your team assignment</li>
+            <li><strong>If running late:</strong> Message the general WhatsApp chat to let everyone know</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Game Schedule</h2>
+      <div id="schedule-container"></div>
+    </div>
+  </div>
+
+  <script>
+    const scheduleData = [
+      {
+        gameDay: 2,
+        slots: [
+          {
+            time: "6:30 PM",
+            games: [
+              { field: 1, team1: "Orange", team2: "Green" },
+              { field: 2, team1: "Blue", team2: "White" }
+            ]
+          },
+          {
+            time: "7:30 PM",
+            games: [
+              { field: 1, team1: "Orange", team2: "Blue" },
+              { field: 2, team1: "White", team2: "Green" }
+            ]
+          }
+        ],
+        luma: "https://luma.com/oxjjq0q8",
+        meetup: "https://www.meetup.com/prospect-park-soccer/events/315132832/"
+      },
+      {
+        gameDay: 3,
+        slots: [
+          {
+            time: "6:30 PM",
+            games: [
+              { field: 1, team1: "Orange", team2: "White" },
+              { field: 2, team1: "Blue", team2: "Green" }
+            ]
+          },
+          {
+            time: "7:30 PM",
+            games: [
+              { field: 1, team1: "Orange", team2: "Green" },
+              { field: 2, team1: "Blue", team2: "White" }
+            ]
+          }
+        ],
+        luma: "https://luma.com/cxaixk1i",
+        meetup: "https://www.meetup.com/prospect-park-soccer/events/gcgwxtyjcjbfc"
+      },
+      {
+        gameDay: 4,
+        slots: [
+          {
+            time: "6:30 PM",
+            games: [
+              { field: 1, team1: "Orange", team2: "Blue" },
+              { field: 2, team1: "White", team2: "Green" }
+            ]
+          },
+          {
+            time: "7:30 PM",
+            games: [
+              { field: 1, team1: "Orange", team2: "White" },
+              { field: 2, team1: "Blue", team2: "Green" }
+            ]
+          }
+        ],
+        luma: "https://luma.com/h3sre8xc",
+        meetup: "https://www.meetup.com/prospect-park-soccer/events/315221585/"
+      },
+      {
+        gameDay: 5,
+        slots: [
+          {
+            time: "6:30 PM",
+            games: [
+              { field: 1, team1: "Orange", team2: "Green" },
+              { field: 2, team1: "Blue", team2: "White" }
+            ]
+          },
+          {
+            time: "7:30 PM",
+            games: [
+              { field: 1, team1: "Orange", team2: "Blue" },
+              { field: 2, team1: "White", team2: "Green" }
+            ]
+          }
+        ],
+        luma: "https://luma.com/zpjuqra7",
+        meetup: "https://www.meetup.com/prospect-park-soccer/events/315221589/"
+      },
+      {
+        gameDay: 6,
+        slots: [
+          {
+            time: "6:30 PM",
+            games: [
+              { field: 1, team1: "Orange", team2: "White" },
+              { field: 2, team1: "Blue", team2: "Green" }
+            ]
+          },
+          {
+            time: "7:30 PM",
+            games: [
+              { field: 1, team1: "Orange", team2: "Green" },
+              { field: 2, team1: "Blue", team2: "White" }
+            ]
+          }
+        ],
+        luma: "https://luma.com/bpmcrn8k",
+        meetup: "https://www.meetup.com/prospect-park-soccer/events/315221591/"
+      },
+      {
+        gameDay: "PLAYOFFS FINALS",
+        isPLayoff: true,
+        slots: [
+          {
+            time: "6:30 PM",
+            games: [
+              { field: 1, team1: "(1st Seed)", team2: "(4th Seed)" },
+              { field: 2, team1: "(2nd Seed)", team2: "(3rd Seed)" }
+            ]
+          },
+          {
+            time: "7:30 PM",
+            games: [
+              { field: 1, team1: "Winner of Field 1", team2: "Winner of Field 2" }
+            ]
+          }
+        ]
+      }
+    ];
+
+    function renderSchedule() {
+      const container = document.getElementById('schedule-container');
+      
+      container.innerHTML = scheduleData.map(day => `
+        <div class="game-day ${day.isPlayoff ? 'playoff-section' : ''}">
+          <h3>Game Day ${day.gameDay}</h3>
+          ${day.slots.map(slot => `
+            <div class="time-slot">
+              <div class="time-label">${slot.time}</div>
+              ${slot.games.map(game => `
+                <div class="game">
+                  <div class="game-info">
+                    Field ${game.field}: <strong>${game.team1}</strong> vs <strong>${game.team2}</strong>
+                  </div>
+                  ${!day.isPlayoff ? `
+                    <div class="game-buttons">
+                      <a href="${day.luma}" class="btn btn-luma" target="_blank">Luma</a>
+                      <a href="${day.meetup}" class="btn btn-meetup" target="_blank">Meetup</a>
+                    </div>
+                  ` : ''}
+                </div>
+              `).join('')}
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    function toggleAccordion(header) {
+      header.classList.toggle('active');
+      header.nextElementSibling.classList.toggle('active');
+    }
+
+    renderSchedule();
+  </script>
+</body>
+</html>
