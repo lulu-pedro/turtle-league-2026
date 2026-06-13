@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Turtle League 2026 Leaderboard</title>
+  <title>Turtle League 2026 - Prospect Park Soccer</title>
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
   <style>
     * {
@@ -15,9 +15,7 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #F9F8F6;
-      padding: 20px;
       color: #333;
-      padding-top: 140px;
     }
     
     .header {
@@ -45,60 +43,6 @@
       color: #1a1a1a;
       font-family: 'Young Serif', serif;
     }
-    
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    
-    .section {
-      background: white;
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 30px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    
-    .section h2 {
-      font-size: 22px;
-      margin-bottom: 16px;
-      color: #1a1a1a;
-      font-family: 'Young Serif', serif;
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    th {
-      text-align: left;
-      padding: 12px 8px;
-      border-bottom: 2px solid #ddd;
-      font-weight: 600;
-      font-size: 13px;
-      color: #666;
-      text-transform: uppercase;
-    }
-    
-    td {
-      padding: 12px 8px;
-      border-bottom: 1px solid #eee;
-    }
-    
-    tr:hover {
-      background: #fafafa;
-    }
-    
-    .team-name {
-      font-weight: 500;
-      font-size: 15px;
-    }
-    
-    .team-orange { color: #ff8c00; }
-    .team-blue { color: #0066cc; }
-    .team-white { color: #333; }
-    .team-green { color: #22a447; }
     
     .nav {
       display: flex;
@@ -128,114 +72,171 @@
       color: white;
       border-color: #0066cc;
     }
-    
-    .match {
-      display: flex;
-      align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
-      font-size: 14px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    
-    .match:last-child {
-      border-bottom: none;
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 20px 40px 20px;
     }
 
-    .match:nth-child(odd) {
-      background: #fafafa;
-      padding: 12px 8px;
-      margin: 0 -8px;
-    }
-    
-    .match-day {
-      width: 80px;
-      color: #999;
-      font-size: 12px;
-      font-weight: 500;
-    }
-    
-    .match-score {
-      flex: 1;
-      min-width: 200px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    
-    .match-team {
-      flex: 0 0 80px;
-      text-align: right;
-      font-weight: 500;
-    }
-    
-    .match-goals {
-      flex: 0 0 40px;
+    .hero {
       text-align: center;
-      font-weight: 600;
+      margin-bottom: 0;
+      padding: 100px 40px;
+      background: #F9F8F6;
+      color: #1a1a1a;
+      border-radius: 0;
+      margin-left: -20px;
+      margin-right: -20px;
+      margin-top: -80px;
     }
-    
-    .match-points {
-      font-size: 12px;
+
+    .emoji-row {
+      font-size: 48px;
+      margin-bottom: 40px;
+      letter-spacing: 12px;
+    }
+
+    .hero h1 {
+      font-size: 96px;
+      font-family: 'Young Serif', serif;
+      margin-bottom: 0;
+      color: #1a1a1a;
+      line-height: 1.1;
+      font-style: italic;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .hero-label {
+      font-size: 18px;
+      font-weight: 400;
       color: #666;
-      margin-left: 8px;
+      margin-bottom: 12px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      letter-spacing: 0;
     }
 
-    .match-scorers {
-      flex: 1;
-      color: #999;
-      font-size: 12px;
+    .section {
+      background: #0066cc;
+      color: white;
+      border-radius: 0;
+      padding: 60px 20px;
+      margin-bottom: 0;
+      box-shadow: none;
+      margin-left: -20px;
+      margin-right: -20px;
     }
 
-    .team-section {
+    .section:nth-of-type(3) {
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .section:nth-child(even) {
+      background: white;
+      color: #333;
+    }
+
+    .section-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .section h2 {
+      font-size: 28px;
+      font-family: 'Young Serif', serif;
       margin-bottom: 20px;
+      color: inherit;
     }
 
-    .team-section h3 {
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 8px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #eee;
+    .section p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      color: inherit;
     }
 
-    .scorer-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid #f0f0f0;
-      font-size: 14px;
-    }
-
-    .scorer-row:last-child {
-      border-bottom: none;
-    }
-
-    .scorer-name {
-      flex: 1;
-    }
-
-    .scorer-goals {
+    .section p strong {
       font-weight: 600;
-      color: #0066cc;
+    }
+
+    .values-list {
+      margin-top: 24px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 32px;
+      background: #0066cc;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.2s;
+      margin-top: 24px;
+    }
+
+    .cta-button:hover {
+      background: #e67e00;
+    }
+
+    .details {
+      background: #f0f4ff;
+      padding: 24px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    .detail-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #1a1a1a;
+    }
+
+    .detail-item {
+      font-size: 15px;
+      color: #666;
     }
 
     @media (max-width: 768px) {
-      body {
-        padding: 16px;
-        padding-top: 160px;
+      .container {
+        padding: 140px 16px 40px 16px;
       }
 
-      .match {
-        flex-direction: column;
-        align-items: flex-start;
+      .hero h1 {
+        font-size: 32px;
       }
 
-      .match-score {
+      .section {
+        padding: 24px;
+      }
+
+      .section h2 {
+        font-size: 22px;
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
         flex-direction: column;
-        width: 100%;
         gap: 8px;
+      }
+
+      .nav a {
+        width: 100%;
+        text-align: center;
       }
     }
   </style>
@@ -245,7 +246,8 @@
     <div class="header-content">
       <div class="header-title">🐢 Turtle League 2026</div>
       <div class="nav">
-        <a href="index.html" class="active">Leaderboard</a>
+        <a href="index.html" class="active">About</a>
+        <a href="leaderboard.html">Leaderboard</a>
         <a href="schedule.html">Schedule & RSVP</a>
         <a href="teams.html">Teams</a>
       </div>
@@ -253,268 +255,63 @@
   </div>
 
   <div class="container">
-    <div style="margin-bottom: 20px; text-align: center;">
-      <a href="https://docs.google.com/spreadsheets/d/1V_ud7_0gjdWexbr0-ikqerKrBaxNFcA4w_bMrn1VCsU/edit?gid=0#gid=0" target="_blank" style="font-size: 13px; color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc;">View raw data spreadsheet</a>
+    <div class="hero">
+      <div class="emoji-row">🐢⚽🐢⚽🐢</div>
+      <p class="hero-label">Welcome back</p>
+      <h1>Turtle League</h1>
     </div>
 
     <div class="section">
-      <h2>🏆 Standings</h2>
-      <table id="standings-table">
-        <thead>
-          <tr>
-            <th>Team</th>
-            <th style="width: 50px;">W</th>
-            <th style="width: 50px;">D</th>
-            <th style="width: 50px;">L</th>
-            <th style="width: 60px;">Pts</th>
-          </tr>
-        </thead>
-        <tbody id="standings-body"></tbody>
-      </table>
+      <div class="section-content">
+        <h2>Our Mission</h2>
+        <p>A mixed-level, community-first league for Women/Trans/Nonbinary players. We play competitive soccer where everyone belongs. Come for the soccer, stay for the people.</p>
+        <p>You'll find experienced and growing players on the same field. Some are advanced, some are coming back from injury, some just started playing in the last few years. We learn from each other, lift each other up, and leave the ego at the door. Our players all head to the bar after every game and celebrate together at the end of the season.</p>
+      </div>
     </div>
 
     <div class="section">
-      <h2>🌟 Golden Team</h2>
-      <div id="golden-team"></div>
-    </div>
-
-    <div class="section">
-      <h2>⚽ Golden Boot</h2>
-      <div id="golden-boot"></div>
-    </div>
-    
-    <div class="section">
-      <h2>Match History</h2>
-      <table id="matches-table">
-        <thead>
-          <tr>
-            <th>Game Day</th>
-            <th>Match</th>
-            <th>Points Change</th>
-            <th>Goalscorers</th>
-          </tr>
-        </thead>
-        <tbody id="matches-body"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <script>
-    const rawData = `Game Day	Field	Game #	Game 	Team	Goal	Goalscorer
-1	1	1	Blue v Orange	Blue	1	Alma
-1	1	1	Blue v Orange	Blue	1	Em G
-1	2	1	White v Green	White	1	Agustina
-1	2	1	White v Green	White	1	Agustina
-1	2	1	White v Green	White	1	Paloma (FA)
-1	1	2	Blue v Green	Blue	1	Margaret (FA)
-1	1	2	Blue v Green	Blue	1	Jane
-1	1	2	Blue v Green	Green	1	Vera
-1	2	2	Orange v White	Orange	1	Asya
-1	2	2	Orange v White	Orange	1	Olive (FA)
-1	2	2	Orange v White	White	1	Agustina`;
-
-    function parseData() {
-      const lines = rawData.trim().split('\n');
-      const games = {};
-
-      lines.slice(1).forEach(line => {
-        const parts = line.split('\t');
-        const gameDay = parts[0];
-        const gameStr = parts[3];
-        const team = parts[4];
-        const goalscorer = parts[6];
-
-        const key = `${gameDay}:${gameStr}`;
+      <div class="section-content">
+        <h2>How to Play</h2>
+        <p>We have four teams. We play one night a week, two games back-to-back, 40 minutes of 8v8 soccer with no keepers. The season is underway and rostered spots are full, but you can join as a free agent. Free agents sign up week-to-week on Meetup and fill in when we need players. Each free agent game costs $8. Click on the "Schedule & RSVP" to sign up to play.</p>
         
-        if (!games[key]) {
-          const [t1, t2] = gameStr.split(' v ');
-          games[key] = {
-            gameDay,
-            teams: [t1.trim(), t2.trim()],
-            goals: { [t1.trim()]: 0, [t2.trim()]: 0 },
-            scorers: {}
-          };
-        }
+        <a href="schedule.html" class="cta-button">View Schedule & RSVP</a>
+      </div>
+    </div>
 
-        games[key].goals[team]++;
-        if (!games[key].scorers[team]) games[key].scorers[team] = [];
-        games[key].scorers[team].push(goalscorer);
-      });
-
-      return Object.values(games);
-    }
-
-    function calculateStandings(games) {
-      const standings = {
-        Orange: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 },
-        Blue: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 },
-        White: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 },
-        Green: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 }
-      };
-
-      games.forEach(game => {
-        const [t1, t2] = game.teams;
-        const g1 = game.goals[t1];
-        const g2 = game.goals[t2];
-
-        standings[t1].gf += g1;
-        standings[t1].ga += g2;
-        standings[t2].gf += g2;
-        standings[t2].ga += g1;
-
-        if (g1 > g2) {
-          standings[t1].wins++;
-          standings[t1].points += 3;
-          standings[t2].losses++;
-        } else if (g2 > g1) {
-          standings[t2].wins++;
-          standings[t2].points += 3;
-          standings[t1].losses++;
-        } else {
-          standings[t1].draws++;
-          standings[t1].points++;
-          standings[t2].draws++;
-          standings[t2].points++;
-        }
-      });
-
-      return Object.entries(standings)
-        .map(([name, stats]) => ({ name, ...stats }))
-        .sort((a, b) => b.points - a.points);
-    }
-
-    function calculateGoldenBoot(games) {
-      const scorers = {};
-
-      games.forEach(game => {
-        ['team1', 'team2'].forEach((teamKey, idx) => {
-          const t = game.teams[idx];
-          if (game.scorers[t]) {
-            game.scorers[t].forEach(scorer => {
-              if (!scorers[scorer]) scorers[scorer] = 0;
-              scorers[scorer]++;
-            });
-          }
-        });
-      });
-
-      return Object.entries(scorers)
-        .map(([name, goals]) => ({ name, goals }))
-        .sort((a, b) => b.goals - a.goals);
-    }
-
-    function calculateGoldenTeam(games) {
-      const teamScorers = {
-        Orange: new Set(),
-        Blue: new Set(),
-        White: new Set(),
-        Green: new Set()
-      };
-
-      games.forEach(game => {
-        ['team1', 'team2'].forEach((teamKey, idx) => {
-          const t = game.teams[idx];
-          if (game.scorers[t]) {
-            game.scorers[t].forEach(scorer => {
-              teamScorers[t].add(scorer);
-            });
-          }
-        });
-      });
-
-      return Object.entries(teamScorers)
-        .map(([name, scorersSet]) => ({ name, scorerCount: scorersSet.size, scorers: Array.from(scorersSet) }))
-        .sort((a, b) => b.scorerCount - a.scorerCount);
-    }
-
-    function renderStandings(teams) {
-      const tbody = document.getElementById('standings-body');
-      tbody.innerHTML = teams.map(team => `
-        <tr>
-          <td class="team-name team-${team.name.toLowerCase()}">${team.name}</td>
-          <td>${team.wins}</td>
-          <td>${team.draws}</td>
-          <td>${team.losses}</td>
-          <td><strong>${team.points}</strong></td>
-        </tr>
-      `).join('');
-    }
-
-    function renderGoldenBoot(scorers) {
-      const container = document.getElementById('golden-boot');
-      if (scorers.length === 0) {
-        container.innerHTML = '<div style="color: #999; padding: 20px;">No goals scored yet</div>';
-        return;
-      }
-      
-      container.innerHTML = scorers.map((scorer, idx) => `
-        <div class="scorer-row">
-          <span style="color: #999; margin-right: 12px;">${idx + 1}.</span>
-          <div class="scorer-name">${scorer.name}</div>
-          <div class="scorer-goals">${scorer.goals}</div>
-        </div>
-      `).join('');
-    }
-
-    function renderGoldenTeam(teams) {
-      const container = document.getElementById('golden-team');
-      container.innerHTML = teams.map(team => `
-        <div class="team-section">
-          <h3><span class="team-${team.name.toLowerCase()}">${team.name}</span> (${team.scorerCount} scorers)</h3>
-          ${team.scorers.map(scorer => `
-            <div class="scorer-row">
-              <div class="scorer-name">${scorer}</div>
+    <div class="section">
+      <div class="section-content">
+        <h2>Season Details</h2>
+        <div class="details">
+          <div class="details-grid">
+            <div class="detail-item">
+              <strong>Where</strong>
+              Parade Ground, Prospect Park
             </div>
-          `).join('')}
+            <div class="detail-item">
+              <strong>When</strong>
+              June 3 through July 28
+            </div>
+            <div class="detail-item">
+              <strong>Days</strong>
+              Wednesdays & Tuesdays
+            </div>
+            <div class="detail-item">
+              <strong>Time</strong>
+              6:00 PM - 8:00 PM
+            </div>
+          </div>
         </div>
-      `).join('');
-    }
+        <div style="margin-top: 24px;">
+          <strong style="display: block; margin-bottom: 12px;">Cost</strong>
+          <div style="font-size: 15px; color: #666; line-height: 1.8;">
+            Players: $50 / season<br>
+            Captains: $32 / season<br>
+            Free Agent/Subs: $8 per game
+          </div>
+        </div>
+      </div>
+    </div>
 
-    function renderMatches(games) {
-      const tbody = document.getElementById('matches-body');
-      const sorted = games.sort((a, b) => parseInt(b.gameDay) - parseInt(a.gameDay));
-
-      tbody.innerHTML = sorted.map(game => {
-        const [t1, t2] = game.teams;
-        const g1 = game.goals[t1];
-        const g2 = game.goals[t2];
-        const scorersStr = [
-          ...(game.scorers[t1] || []).map(s => `${s} (${t1})`),
-          ...(game.scorers[t2] || []).map(s => `${s} (${t2})`)
-        ].join(', ');
-
-        let p1, p2;
-        if (g1 > g2) {
-          p1 = 3;
-          p2 = 0;
-        } else if (g2 > g1) {
-          p1 = 0;
-          p2 = 3;
-        } else {
-          p1 = 1;
-          p2 = 1;
-        }
-
-        return `
-          <tr>
-            <td>Game Day ${game.gameDay}</td>
-            <td><span class="team-${t1.toLowerCase()}" style="font-weight: 600;">${t1}</span> ${g1}-${g2} <span class="team-${t2.toLowerCase()}" style="font-weight: 600;">${t2}</span></td>
-            <td>${t1} +${p1}, ${t2} +${p2}</td>
-            <td style="font-size: 12px; color: #666;">${scorersStr}</td>
-          </tr>
-        `;
-      }).join('');
-    }
-
-    const games = parseData();
-    const standings = calculateStandings(games);
-    const goldenBoot = calculateGoldenBoot(games);
-    const goldenTeam = calculateGoldenTeam(games);
-    
-    renderStandings(standings);
-    renderGoldenBoot(goldenBoot);
-    renderGoldenTeam(goldenTeam);
-    renderMatches(games);
-  </script>
+  </div>
 </body>
 </html>
