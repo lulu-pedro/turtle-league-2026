@@ -152,6 +152,7 @@
     .section:nth-child(even) {
       background: white;
       color: #333;
+      margin-bottom: 0;
     }
 
     .section-content {
@@ -185,8 +186,9 @@
     .cta-button {
       display: inline-block;
       padding: 14px 32px;
-      background: #0066cc;
-      color: white;
+      background: transparent;
+      color: #1a472a;
+      border: 2px solid #1a472a;
       text-decoration: none;
       border-radius: 6px;
       font-weight: 600;
@@ -196,11 +198,12 @@
     }
 
     .cta-button:hover {
-      background: #e67e00;
+      background: #1a472a;
+      color: white;
     }
 
     .details {
-      background: #f0f4ff;
+      background: #f0f8eb;
       padding: 24px;
       border-radius: 8px;
       margin-top: 20px;
@@ -213,15 +216,29 @@
       margin-top: 16px;
     }
 
-    .detail-item strong {
+    .details-cost {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .cost-item {
+      padding: 16px;
+      background: rgba(26, 71, 42, 0.05);
+      border-radius: 6px;
+    }
+
+    .cost-item strong {
       display: block;
       margin-bottom: 6px;
       color: #1a1a1a;
+      font-weight: 600;
     }
 
-    .detail-item {
+    .cost-item span {
       font-size: 15px;
-      color: #666;
+      color: #1a472a;
     }
 
     @media (max-width: 900px) {
@@ -441,7 +458,7 @@
     <div class="section">
       <div class="section-content">
         <h2>Our Mission</h2>
-        <p>A mixed-level, community-first league for Women/Trans/Nonbinary players. We play competitive soccer where everyone belongs. Come for the soccer, stay for the people.</p>
+        <p>Turtle League is part of Prospect Park Soccer, a friendly, volunteer-run soccer collective. We're a mixed-level, community-first league for Women/Trans/Nonbinary players. We play competitive soccer where everyone belongs. Come for the soccer, stay for the people.</p>
         <p>You'll find experienced and growing players on the same field. Some are advanced, some are coming back from injury, some just started playing in the last few years. We learn from each other, lift each other up, and leave the ego at the door. Our players all head to the bar after every game and celebrate together at the end of the season.</p>
       </div>
     </div>
@@ -451,41 +468,41 @@
         <h2>How to Play</h2>
         <p>We have four teams. We play one night a week, two games back-to-back, 40 minutes of 8v8 soccer with no keepers. The season is underway and rostered spots are full, but you can join as a free agent. Free agents sign up week-to-week on Meetup and fill in when we need players. Each free agent game costs $8. Click on the "Schedule & RSVP" to sign up to play.</p>
         
-        <a href="schedule.html" class="cta-button">View Schedule & RSVP</a>
+        <a href="schedule.html" class="cta-button">View Schedule & RSVP →</a>
       </div>
     </div>
 
     <div class="section">
       <div class="section-content">
-        <h2>Season Details</h2>
-        <div class="details">
-          <div class="details-grid">
-            <div class="detail-item">
-              <strong>Where</strong>
-              Parade Ground, Prospect Park
-            </div>
-            <div class="detail-item">
-              <strong>When</strong>
-              June 3 through July 28
-            </div>
-            <div class="detail-item">
-              <strong>Days</strong>
-              Wednesdays & Tuesdays
-            </div>
-            <div class="detail-item">
-              <strong>Time</strong>
-              6:00 PM - 8:00 PM
-            </div>
+        <h2>Summer Season Details</h2>
+        <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px;">
+          <div>
+            <strong style="display: block; margin-bottom: 6px; color: #1a1a1a;">Where</strong>
+            <span style="font-size: 15px; color: #666;">Parade Ground, Prospect Park</span>
+          </div>
+          <div>
+            <strong style="display: block; margin-bottom: 6px; color: #1a1a1a;">When</strong>
+            <span style="font-size: 15px; color: #666;">June 3 through July 28</span>
+          </div>
+          <div>
+            <strong style="display: block; margin-bottom: 6px; color: #1a1a1a;">Days</strong>
+            <span style="font-size: 15px; color: #666;">Wednesdays & Tuesdays</span>
+          </div>
+          <div>
+            <strong style="display: block; margin-bottom: 6px; color: #1a1a1a;">Time</strong>
+            <span style="font-size: 15px; color: #666;">6:00 PM - 8:00 PM</span>
           </div>
         </div>
-        <div style="margin-top: 24px;">
-          <strong style="display: block; margin-bottom: 12px;">Cost</strong>
-          <div style="font-size: 15px; color: #666; line-height: 1.8;">
-            Players: $50 / season<br>
-            Captains: $32 / season<br>
-            Free Agent/Subs: $8 per game
-          </div>
-        </div>
+      </div>
+    </div>
+
+    <div class="section" style="background: #f0f8eb; color: #333;">
+      <div class="section-content">
+        <h2 style="color: #1a1a1a;">Prospect Park Soccer</h2>
+        <p>We're part of Prospect Park Soccer, a friendly, volunteer-run soccer collective where everyone gets to touch the ball and feel part of the game. We play inclusive, non-competitive soccer open to every skill level. And we make an extra effort to welcome beginners and players of all gender identities who have not always been given space on the field.</p>
+        <p>PPS is more than just soccer. It's also a social community where people connect, share laughs, and have fun together. Whether you're joining Turtle League or one of our other groups, you're part of a community that values inclusivity, respect, and good vibes.</p>
+        <p>Want to join? Check out all our leagues and events on Meetup.</p>
+        <a href="https://www.meetup.com/prospect-park-soccer/" class="cta-button" target="_blank">Visit Prospect Park Soccer →</a>
       </div>
     </div>
 
