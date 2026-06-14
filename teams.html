@@ -152,6 +152,7 @@
       background: #0066cc;
       color: white;
       border-color: #0066cc;
+    }
 
     .hamburger-btn {
       display: none;
@@ -178,7 +179,10 @@
       }
 
       .hamburger-btn {
-        display: block;
+        display: block !important;
+        visibility: visible;
+        width: auto;
+        height: auto;
       }
 
       .nav {
@@ -236,7 +240,8 @@
   <div class="header">
     <div class="header-content">
       <div class="header-title">🐢 Turtle League 2026</div>
-      <div class="nav">
+      <button class="hamburger-btn" id="hamburger">☰</button>
+      <div class="nav" id="nav">
         <a href="index.html">About</a>
         <a href="leaderboard.html">Leaderboard</a>
         <a href="schedule.html">Schedule & RSVP</a>
@@ -246,7 +251,7 @@
   </div>
 
   <div class="container">
-    <h1 style="font-size: 20px; margin-bottom: 40px;">Teams</h1>
+    <h1 style="font-family: 'Young Serif', serif; font-size: 28px; margin-bottom: 40px; font-weight: 600;">Teams</h1>
 
     <div class="teams-grid" id="teams-container"></div>
   </div>

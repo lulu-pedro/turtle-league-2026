@@ -221,23 +221,6 @@
       color: #0066cc;
     }
 
-    @media (max-width: 768px) {
-      body {
-        padding: 16px;
-        padding-top: 160px;
-      }
-
-      .match {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .match-score {
-        flex-direction: column;
-        width: 100%;
-        gap: 8px;
-      }
-
     .hamburger-btn {
       display: none;
       background: none;
@@ -252,9 +235,21 @@
       color: #0066cc;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       body {
+        padding: 16px;
         padding-top: 120px;
+      }
+
+      .match {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .match-score {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
       }
 
       .header {
@@ -267,7 +262,10 @@
       }
 
       .hamburger-btn {
-        display: block;
+        display: block !important;
+        visibility: visible;
+        width: auto;
+        height: auto;
       }
 
       .nav {
@@ -362,9 +360,7 @@
   </div>
 
   <div class="container">
-    <div style="margin-bottom: 20px; text-align: center;">
-      <a href="https://docs.google.com/spreadsheets/d/1V_ud7_0gjdWexbr0-ikqerKrBaxNFcA4w_bMrn1VCsU/edit?gid=0#gid=0" target="_blank" style="font-size: 13px; color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc;">View raw data spreadsheet</a>
-    </div>
+    <h1 style="font-family: 'Young Serif', serif; font-size: 28px; margin-bottom: 24px; font-weight: 600; text-align: center;">Stats</h1>
 
     <div class="section">
       <h2>🏆 Standings</h2>
@@ -405,6 +401,10 @@
         </thead>
         <tbody id="matches-body"></tbody>
       </table>
+    </div>
+
+    <div style="margin-top: 40px; margin-bottom: 20px; text-align: center;">
+      <a href="https://docs.google.com/spreadsheets/d/1V_ud7_0gjdWexbr0-ikqerKrBaxNFcA4w_bMrn1VCsU/edit?gid=0#gid=0" target="_blank" style="font-size: 13px; color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc;">View raw data spreadsheet</a>
     </div>
   </div>
 

@@ -231,6 +231,26 @@
       border-bottom: 1px solid #ffe6cc;
     }
 
+    .team-orange {
+      color: #ff8c00;
+      font-weight: 600;
+    }
+
+    .team-blue {
+      color: #0066cc;
+      font-weight: 600;
+    }
+
+    .team-white {
+      color: #333;
+      font-weight: 600;
+    }
+
+    .team-green {
+      color: #22a447;
+      font-weight: 600;
+    }
+
     .nav {
       display: flex;
       gap: 12px;
@@ -258,6 +278,7 @@
       background: #0066cc;
       color: white;
       border-color: #0066cc;
+    }
 
     .hamburger-btn {
       display: none;
@@ -288,7 +309,10 @@
       }
 
       .hamburger-btn {
-        display: block;
+        display: block !important;
+        visibility: visible;
+        width: auto;
+        height: auto;
       }
 
       .nav {
@@ -393,7 +417,7 @@
   </div>
 
   <div class="container">
-    <h1 style="font-size: 20px; margin-bottom: 24px;">Schedule & RSVP</h1>
+    <h1 style="font-family: 'Young Serif', serif; font-size: 28px; margin-bottom: 24px; font-weight: 600;">Schedule & RSVP</h1>
 
     <div class="section rules">
       <h2>Before you sign up: Our House Rules</h2>
@@ -448,7 +472,7 @@
         <div style="display: flex; gap: 24px; flex-wrap: wrap;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <div style="width: 20px; height: 20px; background: #6366f1; border-radius: 3px;"></div>
-            <span style="font-weight: 500;">Team RSVP (Luma)</span>
+            <span style="font-weight: 500;">Rostered Player RSVP (Luma)</span>
           </div>
           <div style="display: flex; align-items: center; gap: 8px;">
             <div style="width: 20px; height: 20px; background: #ff5469; border-radius: 3px;"></div>
@@ -616,6 +640,15 @@
       }
     ];
 
+    function getTeamClass(teamName) {
+      const name = teamName.toLowerCase();
+      if (name === 'orange') return 'team-orange';
+      if (name === 'blue') return 'team-blue';
+      if (name === 'white') return 'team-white';
+      if (name === 'green') return 'team-green';
+      return '';
+    }
+
     function renderSchedule() {
       const container = document.getElementById('schedule-container');
       
@@ -640,9 +673,9 @@
                 <div class="game">
                   <div class="game-info">
                     ${day.isCompleted ? `
-                      <strong>${game.team1}</strong> ${game.score} <strong>${game.team2}</strong>
+                      <span class="${getTeamClass(game.team1)}">${game.team1}</span> ${game.score} <span class="${getTeamClass(game.team2)}">${game.team2}</span>
                     ` : `
-                      Field ${game.field}: <strong>${game.team1}</strong> vs <strong>${game.team2}</strong>
+                      Field ${game.field}: <span class="${getTeamClass(game.team1)}">${game.team1}</span> vs <span class="${getTeamClass(game.team2)}">${game.team2}</span>
                     `}
                   </div>
                 </div>
