@@ -419,7 +419,18 @@
 1	1	2	Blue v Green	Green	1	Vera
 1	2	2	Orange v White	Orange	1	Asya
 1	2	2	Orange v White	Orange	1	Olive (FA)
-1	2	2	Orange v White	White	1	Agustina`;
+1	2	2	Orange v White	White	1	Agustina
+2	1	1	Orange v Green	Green	1	Vera
+2	1	1	Orange v Green	Green	1	Martha
+2	2	1	Blue v White	Blue	1	Mari
+2	2	1	Blue v White	Blue	1	Alma
+2	2	1	Blue v White	Blue	1	Em G
+2	2	1	Blue v White	White	1	Dulany
+2	2	1	Blue v White	White	1	Paloma (FA)
+2	1	2	Blue v Orange	Blue	1	Em G
+2	1	2	Blue v Orange	Orange	1	Alex (FA)
+2	2	2	White v Green	White	1	Dulany
+2	2	2	White v Green	White	1	Paloma (FA)`;
 
     function parseData() {
       const lines = rawData.trim().split('\n');
@@ -435,7 +446,7 @@
         const key = `${gameDay}:${gameStr}`;
         
         if (!games[key]) {
-          const [t1, t2] = gameStr.split(' v ');
+          const [t1, t2] = gameStr.split(/ vs? /);
           games[key] = {
             gameDay,
             teams: [t1.trim(), t2.trim()],
