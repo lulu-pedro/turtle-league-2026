@@ -1,656 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Turtle League 2026 Leaderboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #F9F8F6;
-      padding: 20px;
-      color: #333;
-      padding-top: 140px;
-    }
-    
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      padding: 16px 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      z-index: 1000;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stats — Turtle League 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F9F8F6; color: #333; }
 
-    .header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  .nav-menu { display: flex; gap: 4px; align-items: center; }
+  .nav-menu a { display: block; text-decoration: none; color: #999; font-size: 13px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; padding: 6px 10px; border-bottom: 2px solid transparent; transition: color 0.18s, border-color 0.18s; }
+  .nav-menu a:hover { color: #1a472a; border-bottom-color: #1a472a; }
+  .nav-menu a.active { color: #1a472a; font-weight: 600; border-bottom-color: #1a472a; }
+  .nav-toggle { display: none; background: none; border: none; font-size: 22px; cursor: pointer; color: #1a1a1a; padding: 4px 8px; line-height: 1; }
 
-    .header-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: #1a1a1a;
-      font-family: 'Young Serif', serif;
-    }
-    
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    
-    .section {
-      background: white;
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 30px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    
-    .section h2 {
-      font-size: 22px;
-      margin-bottom: 16px;
-      color: #1a1a1a;
-      font-family: 'Young Serif', serif;
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    th {
-      text-align: left;
-      padding: 12px 8px;
-      border-bottom: 2px solid #ddd;
-      font-weight: 600;
-      font-size: 13px;
-      color: #666;
-      text-transform: uppercase;
-    }
-    
-    td {
-      padding: 12px 8px;
-      border-bottom: 1px solid #eee;
-    }
-    
-    tr:hover {
-      background: #fafafa;
-    }
-    
-    .team-name {
-      font-weight: 500;
-      font-size: 15px;
-    }
-    
-    .team-orange { color: #ff8c00; }
-    .team-blue { color: #0066cc; }
-    .team-white { color: #333; }
-    .team-green { color: #22a447; }
-    
-    .nav {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
+  .tc-orange { color: #d97000; } .tc-blue { color: #0055c8; } .tc-white { color: #555555; } .tc-green { color: #1a8040; }
+  tr:hover td { background: #fafaf8; }
 
-    .nav a {
-      padding: 6px 0;
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid #ddd;
-      text-decoration: none;
-      color: #999;
-      font-weight: 400;
-      font-size: 13px;
-      transition: all 0.2s;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .nav a:hover {
-      color: #1a472a;
-      border-bottom-color: #1a472a;
-    }
-
-    .nav a.active {
-      color: #1a472a;
-      border-bottom: 3px solid #1a472a;
-      font-weight: 600;
-    }
-    
-    .match {
-      display: flex;
-      align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
-      font-size: 14px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    
-    .match:last-child {
-      border-bottom: none;
-    }
-
-    .match:nth-child(odd) {
-      background: #fafafa;
-      padding: 12px 8px;
-      margin: 0 -8px;
-    }
-    
-    .match-day {
-      width: 80px;
-      color: #999;
-      font-size: 12px;
-      font-weight: 500;
-    }
-    
-    .match-score {
-      flex: 1;
-      min-width: 200px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    
-    .match-team {
-      flex: 0 0 80px;
-      text-align: right;
-      font-weight: 500;
-    }
-    
-    .match-goals {
-      flex: 0 0 40px;
-      text-align: center;
-      font-weight: 600;
-    }
-    
-    .match-points {
-      font-size: 12px;
-      color: #666;
-      margin-left: 8px;
-    }
-
-    .match-scorers {
-      flex: 1;
-      color: #999;
-      font-size: 12px;
-    }
-
-    .team-section {
-      margin-bottom: 20px;
-    }
-
-    .team-section h3 {
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 8px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .scorer-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid #f0f0f0;
-      font-size: 14px;
-    }
-
-    .scorer-row:last-child {
-      border-bottom: none;
-    }
-
-    .scorer-name {
-      flex: 1;
-    }
-
-    .scorer-goals {
-      font-weight: 600;
-      color: #0066cc;
-    }
-
-    .hamburger-btn {
-      display: none !important;
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #1a1a1a;
-      padding: 4px 8px;
-    }
-
-    .hamburger-btn.active {
-      color: #0066cc;
-    }
-
-    @media (max-width: 900px) {
-      body {
-        padding: 16px;
-        padding-top: 120px;
-      }
-
-      .match {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .match-score {
-        flex-direction: column;
-        width: 100%;
-        gap: 8px;
-      }
-
-      .header {
-        padding: 12px 16px;
-      }
-
-      .header-content {
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      .hamburger-btn {
-        display: block !important;
-      }
-
-      .nav {
-        display: none;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: white;
-        flex-direction: column;
-        gap: 8px;
-        padding: 12px 16px;
-        border-bottom: 1px solid #ddd;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        width: 100%;
-      }
-
-      .nav.active {
-        display: flex;
-      }
-
-      .nav a {
-        width: 100%;
-        text-align: center;
-        padding: 10px 12px;
-        font-size: 13px;
-      }
-
-      .section {
-        padding: 16px;
-      }
-
-      table {
-        font-size: 13px;
-      }
-
-      th, td {
-        padding: 8px 4px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      body {
-        padding: 10px 12px;
-        padding-top: 110px;
-      }
-
-      .header {
-        padding: 10px 12px;
-      }
-
-      .header-title {
-        font-size: 16px;
-      }
-
-      .hamburger-btn {
-        font-size: 24px;
-      }
-
-      .section {
-        padding: 12px;
-        margin-bottom: 20px;
-      }
-
-      table {
-        font-size: 12px;
-      }
-
-      th, td {
-        padding: 6px 4px;
-      }
-
-      .nav {
-        top: 50px;
-      }
-    }
-
-  </style>
+  @media (max-width: 768px) {
+    .nav-toggle { display: block; }
+    .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; gap: 0; border-top: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.08); z-index: 99; }
+    .nav-menu.open { display: flex; }
+    .nav-menu a { padding: 14px 20px; border-bottom: 1px solid #f0f0ee !important; font-size: 14px; }
+    .nav-menu a:hover { background: #fafaf8; }
+  }
+</style>
 </head>
 <body>
-  <div class="header">
-    <div class="header-content">
-      <div class="header-title">🐢 Turtle League 2026</div>
-      <button class="hamburger-btn" id="hamburger">☰</button>
-      <div class="nav" id="nav">
-        <a href="index.html">About</a>
-        <a href="leaderboard.html" class="active">Stats</a>
-        <a href="schedule.html">Schedule & RSVP</a>
-        <a href="teams.html">Teams</a>
-      </div>
-    </div>
+
+<!-- HEADER -->
+<header style="position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; z-index: 100;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; justify-content: space-between; align-items: center; position: relative;">
+    <a href="index.html" style="font-family: 'Young Serif', serif; font-size: 18px; color: #1a1a1a; text-decoration: none; font-style: italic;">🐢 Turtle League</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">☰</button>
+    <nav class="nav-menu" id="nav-menu">
+      <a href="index.html">About</a>
+      <a href="leaderboard.html" class="active">Stats</a>
+      <a href="schedule.html">Schedule &amp; RSVP</a>
+      <a href="teams.html">Teams</a>
+    </nav>
+  </div>
+</header>
+
+<div style="padding-top: 56px;">
+
+  <!-- PAGE TITLE -->
+  <div style="text-align: center; padding: clamp(48px, 6vw, 80px) 24px clamp(32px, 4vw, 48px); background: #F9F8F6;">
+    <p style="font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #1a472a; margin-bottom: 20px;">Turtle League 2026</p>
+    <h1 style="font-family: 'Young Serif', serif; font-size: clamp(40px, 7vw, 64px); color: #1a1a1a; font-style: italic; line-height: 1;">Stats</h1>
   </div>
 
-  <div class="container">
-    <h1 style="font-family: 'Young Serif', serif; font-size: 28px; margin-bottom: 24px; font-weight: 600; text-align: center;">Stats</h1>
-
-    <div class="section">
-      <h2>🏆 Standings</h2>
-      <table id="standings-table">
+  <!-- STANDINGS -->
+  <section style="padding: clamp(40px, 5vw, 64px) 24px; background: white; border-top: 1px solid #eee;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <h2 style="font-family: 'Young Serif', serif; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px;">Standings</h2>
+      <table style="width: 100%; border-collapse: collapse;">
         <thead>
           <tr>
-            <th>Team</th>
-            <th style="width: 50px;">W</th>
-            <th style="width: 50px;">D</th>
-            <th style="width: 50px;">L</th>
-            <th style="width: 60px;">Pts</th>
+            <th style="text-align: left; padding: 10px 8px; border-bottom: 2px solid #eee; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb; width: 32px;"></th>
+            <th style="text-align: left; padding: 10px 8px; border-bottom: 2px solid #eee; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb;">Team</th>
+            <th style="text-align: center; padding: 10px 8px; border-bottom: 2px solid #eee; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb; width: 48px;">W</th>
+            <th style="text-align: center; padding: 10px 8px; border-bottom: 2px solid #eee; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb; width: 48px;">D</th>
+            <th style="text-align: center; padding: 10px 8px; border-bottom: 2px solid #eee; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb; width: 48px;">L</th>
+            <th style="text-align: center; padding: 10px 8px; border-bottom: 2px solid #eee; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb; width: 56px;">Pts</th>
           </tr>
         </thead>
         <tbody id="standings-body"></tbody>
       </table>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>🌟 Golden Team</h2>
-      <div id="golden-team"></div>
-    </div>
-
-    <div class="section">
-      <h2>⚽ Golden Boot</h2>
-      <div id="golden-boot"></div>
-    </div>
-    
-    <div class="section">
-      <h2>Match History</h2>
-      <table id="matches-table">
-        <thead>
-          <tr>
-            <th>Game Day</th>
-            <th>Match</th>
-            <th>Points Change</th>
-            <th>Goalscorers</th>
-          </tr>
-        </thead>
-        <tbody id="matches-body"></tbody>
-      </table>
-    </div>
-
-    <div style="margin-top: 40px; margin-bottom: 20px; text-align: center;">
-      <a href="https://docs.google.com/spreadsheets/d/1V_ud7_0gjdWexbr0-ikqerKrBaxNFcA4w_bMrn1VCsU/edit?gid=0#gid=0" target="_blank" style="font-size: 13px; color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc;">View raw data spreadsheet</a>
-    </div>
-  </div>
-
-  <script>
-    const rawData = `Game Day	Field	Game #	Game 	Team	Goal	Goalscorer
-1	1	1	Blue v Orange	Blue	1	Alma
-1	1	1	Blue v Orange	Blue	1	Em G
-1	2	1	White v Green	White	1	Agustina
-1	2	1	White v Green	White	1	Agustina
-1	2	1	White v Green	White	1	Paloma (FA)
-1	1	2	Blue v Green	Blue	1	Margaret (FA)
-1	1	2	Blue v Green	Blue	1	Jane
-1	1	2	Blue v Green	Green	1	Vera
-1	2	2	Orange v White	Orange	1	Asya
-1	2	2	Orange v White	Orange	1	Olive (FA)
-1	2	2	Orange v White	White	1	Agustina
-2	1	1	Orange v Green	Green	1	Vera
-2	1	1	Orange v Green	Green	1	Martha
-2	2	1	Blue v White	Blue	1	Mari
-2	2	1	Blue v White	Blue	1	Alma
-2	2	1	Blue v White	Blue	1	Em G
-2	2	1	Blue v White	White	1	Dulany
-2	2	1	Blue v White	White	1	Paloma (FA)
-2	1	2	Blue v Orange	Blue	1	Em G
-2	1	2	Blue v Orange	Orange	1	Alex (FA)
-2	2	2	White v Green	White	1	Dulany
-2	2	2	White v Green	White	1	Paloma (FA)`;
-
-    function parseData() {
-      const lines = rawData.trim().split('\n');
-      const games = {};
-
-      lines.slice(1).forEach(line => {
-        const parts = line.split('\t');
-        const gameDay = parts[0];
-        const gameStr = parts[3];
-        const team = parts[4];
-        const goalscorer = parts[6];
-
-        const key = `${gameDay}:${gameStr}`;
-        
-        if (!games[key]) {
-          const [t1, t2] = gameStr.split(/ vs? /);
-          games[key] = {
-            gameDay,
-            teams: [t1.trim(), t2.trim()],
-            goals: { [t1.trim()]: 0, [t2.trim()]: 0 },
-            scorers: {}
-          };
-        }
-
-        games[key].goals[team]++;
-        if (!games[key].scorers[team]) games[key].scorers[team] = [];
-        games[key].scorers[team].push(goalscorer);
-      });
-
-      return Object.values(games);
-    }
-
-    function calculateStandings(games) {
-      const standings = {
-        Orange: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 },
-        Blue: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 },
-        White: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 },
-        Green: { wins: 0, draws: 0, losses: 0, points: 0, gf: 0, ga: 0 }
-      };
-
-      games.forEach(game => {
-        const [t1, t2] = game.teams;
-        const g1 = game.goals[t1];
-        const g2 = game.goals[t2];
-
-        standings[t1].gf += g1;
-        standings[t1].ga += g2;
-        standings[t2].gf += g2;
-        standings[t2].ga += g1;
-
-        if (g1 > g2) {
-          standings[t1].wins++;
-          standings[t1].points += 3;
-          standings[t2].losses++;
-        } else if (g2 > g1) {
-          standings[t2].wins++;
-          standings[t2].points += 3;
-          standings[t1].losses++;
-        } else {
-          standings[t1].draws++;
-          standings[t1].points++;
-          standings[t2].draws++;
-          standings[t2].points++;
-        }
-      });
-
-      return Object.entries(standings)
-        .map(([name, stats]) => ({ name, ...stats }))
-        .sort((a, b) => b.points - a.points);
-    }
-
-    function calculateGoldenBoot(games) {
-      const scorers = {};
-
-      games.forEach(game => {
-        ['team1', 'team2'].forEach((teamKey, idx) => {
-          const t = game.teams[idx];
-          if (game.scorers[t]) {
-            game.scorers[t].forEach(scorer => {
-              if (!scorers[scorer]) scorers[scorer] = 0;
-              scorers[scorer]++;
-            });
-          }
-        });
-      });
-
-      return Object.entries(scorers)
-        .map(([name, goals]) => ({ name, goals }))
-        .sort((a, b) => b.goals - a.goals);
-    }
-
-    function calculateGoldenTeam(games) {
-      const teamScorers = {
-        Orange: new Set(),
-        Blue: new Set(),
-        White: new Set(),
-        Green: new Set()
-      };
-
-      games.forEach(game => {
-        ['team1', 'team2'].forEach((teamKey, idx) => {
-          const t = game.teams[idx];
-          if (game.scorers[t]) {
-            game.scorers[t].forEach(scorer => {
-              teamScorers[t].add(scorer);
-            });
-          }
-        });
-      });
-
-      return Object.entries(teamScorers)
-        .map(([name, scorersSet]) => ({ name, scorerCount: scorersSet.size, scorers: Array.from(scorersSet) }))
-        .sort((a, b) => b.scorerCount - a.scorerCount);
-    }
-
-    function renderStandings(teams) {
-      const tbody = document.getElementById('standings-body');
-      tbody.innerHTML = teams.map(team => `
-        <tr>
-          <td class="team-name team-${team.name.toLowerCase()}">${team.name}</td>
-          <td>${team.wins}</td>
-          <td>${team.draws}</td>
-          <td>${team.losses}</td>
-          <td><strong>${team.points}</strong></td>
-        </tr>
-      `).join('');
-    }
-
-    function renderGoldenBoot(scorers) {
-      const container = document.getElementById('golden-boot');
-      if (scorers.length === 0) {
-        container.innerHTML = '<div style="color: #999; padding: 20px;">No goals scored yet</div>';
-        return;
-      }
-      
-      container.innerHTML = scorers.map((scorer, idx) => `
-        <div class="scorer-row">
-          <span style="color: #999; margin-right: 12px;">${idx + 1}.</span>
-          <div class="scorer-name">${scorer.name}</div>
-          <div class="scorer-goals">${scorer.goals}</div>
+  <!-- GOLDEN BOOT + GOLDEN TEAM -->
+  <section style="padding: clamp(40px, 5vw, 64px) 24px; background: #eef5e9;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px;">
+        <div>
+          <h2 style="font-family: 'Young Serif', serif; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 20px;">Golden Boot</h2>
+          <div id="golden-boot"></div>
         </div>
-      `).join('');
-    }
-
-    function renderGoldenTeam(teams) {
-      const container = document.getElementById('golden-team');
-      container.innerHTML = teams.map(team => `
-        <div class="team-section">
-          <h3><span class="team-${team.name.toLowerCase()}">${team.name}</span> (${team.scorerCount} scorers)</h3>
-          ${team.scorers.map(scorer => `
-            <div class="scorer-row">
-              <div class="scorer-name">${scorer}</div>
-            </div>
-          `).join('')}
+        <div>
+          <h2 style="font-family: 'Young Serif', serif; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 20px;">Golden Team</h2>
+          <div id="golden-team"></div>
         </div>
-      `).join('');
-    }
+      </div>
+    </div>
+  </section>
 
-    function renderMatches(games) {
-      const tbody = document.getElementById('matches-body');
-      const sorted = games.sort((a, b) => parseInt(b.gameDay) - parseInt(a.gameDay));
+  <!-- MATCH HISTORY -->
+  <section style="padding: clamp(40px, 5vw, 64px) 24px; background: white; border-top: 1px solid #eee;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <h2 style="font-family: 'Young Serif', serif; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px;">Match History</h2>
+      <div id="match-history"></div>
+      <div style="margin-top: 28px;">
+        <a href="https://docs.google.com/spreadsheets/d/1V_ud7_0gjdWexbr0-ikqerKrBaxNFcA4w_bMrn1VCsU/edit?gid=0#gid=0" target="_blank" style="font-size: 13px; color: #1a472a; text-decoration: none; border-bottom: 1px solid rgba(26,71,42,0.3);">View raw data spreadsheet →</a>
+      </div>
+    </div>
+  </section>
 
-      tbody.innerHTML = sorted.map(game => {
-        const [t1, t2] = game.teams;
-        const g1 = game.goals[t1];
-        const g2 = game.goals[t2];
-        const scorersStr = [
-          ...(game.scorers[t1] || []).map(s => `${s} (${t1})`),
-          ...(game.scorers[t2] || []).map(s => `${s} (${t2})`)
-        ].join(', ');
+  <!-- FOOTER -->
+  <footer style="background: #111; padding: 32px 24px;">
+    <div style="max-width: 720px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+      <span style="font-family: 'Young Serif', serif; font-size: 16px; color: #bbb; font-style: italic;">🐢 Turtle League 2026</span>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <a href="index.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">About</a>
+        <a href="leaderboard.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Stats</a>
+        <a href="schedule.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Schedule</a>
+        <a href="teams.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Teams</a>
+      </div>
+      <span style="font-size: 12px; color: #444;">© 2026 Prospect Park Soccer</span>
+    </div>
+  </footer>
 
-        let p1, p2;
-        if (g1 > g2) {
-          p1 = 3;
-          p2 = 0;
-        } else if (g2 > g1) {
-          p1 = 0;
-          p2 = 3;
-        } else {
-          p1 = 1;
-          p2 = 1;
-        }
+</div>
 
-        return `
-          <tr>
-            <td>Game Day ${game.gameDay}</td>
-            <td><span class="team-${t1.toLowerCase()}" style="font-weight: 600;">${t1}</span> ${g1}-${g2} <span class="team-${t2.toLowerCase()}" style="font-weight: 600;">${t2}</span></td>
-            <td>${t1} +${p1}, ${t2} +${p2}</td>
-            <td style="font-size: 12px; color: #666;">${scorersStr}</td>
-          </tr>
-        `;
-      }).join('');
-    }
+<script>
+  // ── DATA ──────────────────────────────────────────────────────────────
+  var GAME_DATA = [
+    { day: 1, t1: "Blue",   t2: "Orange", s1: ["Alma","Em G"],                        s2: [] },
+    { day: 1, t1: "White",  t2: "Green",  s1: ["Agustina","Agustina","Paloma (FA)"],  s2: [] },
+    { day: 1, t1: "Blue",   t2: "Green",  s1: ["Margaret (FA)","Jane"],               s2: ["Vera"] },
+    { day: 1, t1: "Orange", t2: "White",  s1: ["Asya","Olive (FA)"],                  s2: ["Agustina"] },
+    { day: 2, t1: "Orange", t2: "Green",  s1: [],                                     s2: ["Vera","Martha"] },
+    { day: 2, t1: "Blue",   t2: "White",  s1: ["Mari","Alma","Em G"],                 s2: ["Dulany","Paloma (FA)"] },
+    { day: 2, t1: "Blue",   t2: "Orange", s1: ["Em G"],                               s2: ["Alex (FA)"] },
+    { day: 2, t1: "White",  t2: "Green",  s1: ["Dulany","Paloma (FA)"],               s2: [] },
+  ];
 
-    const games = parseData();
-    const standings = calculateStandings(games);
-    const goldenBoot = calculateGoldenBoot(games);
-    const goldenTeam = calculateGoldenTeam(games);
-    
-    renderStandings(standings);
-    renderGoldenBoot(goldenBoot);
-    renderGoldenTeam(goldenTeam);
-    renderMatches(games);
-  </script>
+  var CC = { Orange: 'tc-orange', Blue: 'tc-blue', White: 'tc-white', Green: 'tc-green' };
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('nav');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      nav.classList.toggle('active');
+  // ── STANDINGS ─────────────────────────────────────────────────────────
+  function getStandings() {
+    var s = { Orange:{w:0,d:0,l:0,pts:0,gf:0,ga:0}, Blue:{w:0,d:0,l:0,pts:0,gf:0,ga:0}, White:{w:0,d:0,l:0,pts:0,gf:0,ga:0}, Green:{w:0,d:0,l:0,pts:0,gf:0,ga:0} };
+    GAME_DATA.forEach(function(g) {
+      var g1 = g.s1.length, g2 = g.s2.length;
+      s[g.t1].gf += g1; s[g.t1].ga += g2;
+      s[g.t2].gf += g2; s[g.t2].ga += g1;
+      if (g1 > g2)      { s[g.t1].w++; s[g.t1].pts += 3; s[g.t2].l++; }
+      else if (g2 > g1) { s[g.t2].w++; s[g.t2].pts += 3; s[g.t1].l++; }
+      else              { s[g.t1].d++; s[g.t1].pts++; s[g.t2].d++; s[g.t2].pts++; }
     });
+    return Object.keys(s).map(function(name) { return Object.assign({name: name}, s[name]); })
+      .sort(function(a,b) { return (b.pts - a.pts) || ((b.gf-b.ga) - (a.gf-a.ga)); });
+  }
 
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        nav.classList.remove('active');
-      });
+  // ── GOLDEN BOOT ───────────────────────────────────────────────────────
+  function getGoldenBoot() {
+    var scorers = {};
+    GAME_DATA.forEach(function(g) {
+      g.s1.concat(g.s2).forEach(function(name) { scorers[name] = (scorers[name] || 0) + 1; });
     });
-  </script>
+    return Object.keys(scorers).map(function(name) { return {name: name, goals: scorers[name]}; })
+      .sort(function(a,b) { return b.goals - a.goals; });
+  }
+
+  // ── GOLDEN TEAM ───────────────────────────────────────────────────────
+  function getGoldenTeam() {
+    var ts = { Orange:[], Blue:[], White:[], Green:[] };
+    GAME_DATA.forEach(function(g) {
+      g.s1.forEach(function(n) { if (ts[g.t1].indexOf(n) < 0) ts[g.t1].push(n); });
+      g.s2.forEach(function(n) { if (ts[g.t2].indexOf(n) < 0) ts[g.t2].push(n); });
+    });
+    return Object.keys(ts).map(function(name) { return {name: name, scorers: ts[name]}; })
+      .sort(function(a,b) { return b.scorers.length - a.scorers.length; });
+  }
+
+  // ── RENDER ────────────────────────────────────────────────────────────
+  var standings = getStandings();
+  var standingsBody = document.getElementById('standings-body');
+  standings.forEach(function(t, i) {
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td style="padding:15px 8px;border-bottom:1px solid #f0f0ee;font-size:12px;color:#ccc;">' + (i+1) + '</td>' +
+      '<td style="padding:15px 8px;border-bottom:1px solid #f0f0ee;"><span class="' + (CC[t.name]||'') + '" style="font-weight:600;font-size:15px;">' + t.name + '</span></td>' +
+      '<td style="padding:15px 8px;border-bottom:1px solid #f0f0ee;text-align:center;font-size:14px;color:#555;">' + t.w + '</td>' +
+      '<td style="padding:15px 8px;border-bottom:1px solid #f0f0ee;text-align:center;font-size:14px;color:#555;">' + t.d + '</td>' +
+      '<td style="padding:15px 8px;border-bottom:1px solid #f0f0ee;text-align:center;font-size:14px;color:#555;">' + t.l + '</td>' +
+      '<td style="padding:15px 8px;border-bottom:1px solid #f0f0ee;text-align:center;font-size:18px;font-weight:700;color:#1a1a1a;">' + t.pts + '</td>';
+    standingsBody.appendChild(tr);
+  });
+
+  var bootEl = document.getElementById('golden-boot');
+  getGoldenBoot().forEach(function(s, i) {
+    var d = document.createElement('div');
+    d.style.cssText = 'display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(26,71,42,0.12);';
+    d.innerHTML =
+      '<span style="font-size:12px;color:#bbb;width:18px;text-align:right;flex-shrink:0;">' + (i+1) + '</span>' +
+      '<span style="flex:1;font-size:14px;color:#333;">' + s.name + '</span>' +
+      '<span style="font-size:14px;font-weight:700;color:#1a472a;">' + s.goals + '</span>';
+    bootEl.appendChild(d);
+  });
+
+  var teamEl = document.getElementById('golden-team');
+  getGoldenTeam().forEach(function(t) {
+    var d = document.createElement('div');
+    d.style.cssText = 'padding:11px 0;border-bottom:1px solid rgba(26,71,42,0.12);';
+    d.innerHTML =
+      '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;">' +
+        '<span class="' + (CC[t.name]||'') + '" style="font-weight:600;font-size:14px;">' + t.name + '</span>' +
+        '<span style="font-size:12px;color:#999;">' + t.scorers.length + ' scorers</span>' +
+      '</div>' +
+      '<div style="font-size:12px;color:#888;line-height:1.5;">' + t.scorers.join(', ') + '</div>';
+    teamEl.appendChild(d);
+  });
+
+  var histEl = document.getElementById('match-history');
+  var sorted = GAME_DATA.slice().sort(function(a,b) { return b.day - a.day; });
+  sorted.forEach(function(g) {
+    var allScorers = g.s1.map(function(n){return n+' ('+g.t1+')';}).concat(g.s2.map(function(n){return n+' ('+g.t2+')';}));
+    var d = document.createElement('div');
+    d.style.cssText = 'padding:16px 0;border-bottom:1px solid #f0f0ee;';
+    d.innerHTML =
+      '<div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">' +
+        '<span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#bbb;width:60px;flex-shrink:0;">Day ' + g.day + '</span>' +
+        '<div style="display:flex;align-items:center;gap:10px;min-width:220px;">' +
+          '<span class="' + (CC[g.t1]||'') + '" style="font-weight:600;font-size:14px;">' + g.t1 + '</span>' +
+          '<span style="font-size:15px;font-weight:700;color:#1a1a1a;">' + g.s1.length + '–' + g.s2.length + '</span>' +
+          '<span class="' + (CC[g.t2]||'') + '" style="font-weight:600;font-size:14px;">' + g.t2 + '</span>' +
+        '</div>' +
+        '<span style="font-size:12px;color:#aaa;flex:1;min-width:160px;">' + allScorers.join(' · ') + '</span>' +
+      '</div>';
+    histEl.appendChild(d);
+  });
+
+  // ── NAV TOGGLE ────────────────────────────────────────────────────────
+  document.getElementById('nav-toggle').addEventListener('click', function() {
+    var nav = document.getElementById('nav-menu');
+    nav.classList.toggle('open');
+  });
+</script>
 </body>
 </html>
