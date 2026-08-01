@@ -14,7 +14,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Newsreader:ital,wght@1,200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Lora:ital,wght@1,400&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -84,16 +84,28 @@
     </div>
 
     <!-- WHAT PLAYERS ARE SAYING -->
-    <section style="padding: clamp(40px, 5vw, 64px) 24px; background: white; border-top: 1px solid #eee;">
+    <section style="padding: clamp(40px, 5vw, 64px) 24px; background: #eef5e9; border-top: 1px solid #eee;">
       <div style="max-width: 720px; margin: 0 auto;">
         <h2 style="font-family: 'Young Serif', serif; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px;">What players are saying</h2>
 
-        <!-- ===== TESTIMONIAL — to add another, copy this whole block and edit the quote + name ===== -->
-        <blockquote style="background: #fff; border-left: 3px solid #1a472a; border-radius: 4px; padding: 24px 28px; margin: 0 0 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
-          <p style="font-family: 'Newsreader', serif; font-style: italic; font-weight: 200; font-size: clamp(17px,2.4vw,21px); line-height: 1.55; color: #3a3a3a; margin: 0 0 14px;">"As a kid, I never played sports because as a fairly slow and uncoordinated person, I always felt that the best thing I could do for any team was just not be on it. Now at 49, my weekly soccer game is the best part of my week, and it would never have happened without PPS. PPS is a truly unique sports space where fun, community and learning are actually more important than winning, and people in their 20s to 70s play together."</p>
-          <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">— Sarah E</footer>
-        </blockquote>
-        <!-- ===== END TESTIMONIAL ===== -->
+        <!-- Testimonial cards — grid so they sit side by side on wider screens, stack on mobile -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+
+          <!-- ===== TESTIMONIAL — to add another, copy this whole block and edit the quote + name ===== -->
+          <blockquote style="background: #fff; border-left: 3px solid #1a472a; border-radius: 4px; padding: 24px 28px; margin: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
+            <p style="font-family: 'Lora', serif; font-style: italic; font-weight: 400; font-size: clamp(14px,1.8vw,16px); line-height: 1.55; color: #3a3a3a; margin: 0 0 14px;">"As a kid, I never played sports because as a fairly slow and uncoordinated person, I always felt that the best thing I could do for any team was just not be on it. Now at 49, my weekly soccer game is the best part of my week, and it would never have happened without PPS. PPS is a truly unique sports space where fun, community and learning are actually more important than winning, and people in their 20s to 70s play together."</p>
+            <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">— Sarah E</footer>
+          </blockquote>
+          <!-- ===== END TESTIMONIAL ===== -->
+
+          <!-- ===== TESTIMONIAL — to add another, copy this whole block and edit the quote + name ===== -->
+          <blockquote style="background: #fff; border-left: 3px solid #1a472a; border-radius: 4px; padding: 24px 28px; margin: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
+            <p style="font-family: 'Lora', serif; font-style: italic; font-weight: 400; font-size: clamp(14px,1.8vw,16px); line-height: 1.55; color: #3a3a3a; margin: 0 0 14px;">"Turtle league has helped me find a home on the soccer field again after a decade of not playing. It is a necessary community to welcome underrepresented women, trans, and nonbinary players in a space that feels friendly and supportive to all levels. Turtle league is a truly special community and has transformed my experience in New York."</p>
+            <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">— Dulany</footer>
+          </blockquote>
+          <!-- ===== END TESTIMONIAL ===== -->
+
+        </div>
 
       </div>
     </section>
