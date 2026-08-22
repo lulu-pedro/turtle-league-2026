@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Summer 2026 | Turtle League</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Summer 2026 season recap for Turtle League: Prospect Park Soccer's Women, Trans, Nonbinary summer league. Champion, awards, and final results.">
+  <meta property="og:title" content="Summer 2026 | Turtle League">
+  <meta property="og:description" content="Summer 2026 season recap for Turtle League: champion, awards, and final results.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://turtleleague.com/summer-2026.html">
+  <meta property="og:image" content="https://turtleleague.com/images/pps-wtnb-summer-2025.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F9F8F6; color: #555; }
+
+    .nav-menu { display: flex; gap: 4px; align-items: center; }
+    .nav-menu > a, .nav-dropdown-toggle { display: block; text-decoration: none; color: #999; font-size: 13px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; padding: 6px 10px; border-bottom: 2px solid transparent; transition: color 0.18s, border-color 0.18s; background: none; border-left: none; border-right: none; border-top: none; font-family: inherit; cursor: pointer; }
+    .nav-menu > a:hover, .nav-dropdown-toggle:hover { color: #1a472a; border-bottom-color: #1a472a; }
+    .nav-menu > a.active, .nav-dropdown-toggle.active { color: #1a472a; font-weight: 600; border-bottom-color: #1a472a; }
+    .nav-toggle { display: none; background: none; border: none; font-size: 22px; cursor: pointer; color: #1a1a1a; padding: 4px 8px; line-height: 1; }
+
+    /* Past Seasons dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: 100%; right: 0; min-width: 160px;
+      background: white; border: 1px solid #eee; border-radius: 6px; box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      padding: 6px; z-index: 101;
+    }
+    .nav-dropdown.open .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block; text-decoration: none; color: #666; font-size: 13px; padding: 8px 10px;
+      border-radius: 4px; white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { background: #f4f4f0; color: #1a472a; }
+    .nav-dropdown-menu a.active { color: #1a472a; font-weight: 600; }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; gap: 0; border-top: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.08); z-index: 99; }
+      .nav-menu.open { display: flex; }
+      .nav-menu > a, .nav-dropdown-toggle { padding: 14px 20px; border-bottom: 1px solid #f0f0ee !important; font-size: 14px; width: 100%; text-align: left; }
+      .nav-menu > a:hover, .nav-dropdown-toggle:hover { background: #fafaf8; }
+      .nav-dropdown { width: 100%; }
+      .nav-dropdown-menu { display: none; position: static; box-shadow: none; border: none; border-radius: 0; background: #fafaf8; padding: 0; }
+      .nav-dropdown.open .nav-dropdown-menu { display: block; }
+      .nav-dropdown-menu a { padding: 12px 20px 12px 32px; border-bottom: 1px solid #f0f0ee; }
+    }
+
+    /* Team identity colors */
+    .tc-orange { color: #d97000; }
+    .tc-blue   { color: #0055c8; }
+    .tc-white  { color: #555555; }
+    .tc-green  { color: #1a8040; }
+
+    /* Tabs */
+    .tab-buttons { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .tab-btn {
+      font: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+      color: #999; background: white; border: 1px solid #e0e0d8; border-radius: 999px; padding: 10px 22px;
+      cursor: pointer; transition: all 0.18s;
+    }
+    .tab-btn:hover { color: #1a472a; border-color: #1a472a; }
+    .tab-btn.active { color: white; background: #1a472a; border-color: #1a472a; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .award-card { background: #fff; border-radius: 8px; padding: 22px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    .award-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #1a472a; margin-bottom: 8px; }
+    .award-name { font-family: 'Young Serif', serif; font-size: 22px; color: #1a1a1a; font-style: italic; margin-bottom: 4px; }
+    .award-sub { font-size: 13px; color: #999; }
+
+    .team-card { border-radius: 10px; padding: 24px; }
+    .team-card h3 { font-family: 'Young Serif', serif; font-size: 20px; font-style: italic; margin-bottom: 4px; }
+    .team-card .captain { font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 14px; }
+    .team-card .players { font-size: 14px; line-height: 1.8; color: #444; }
+
+    .recap-day { margin-bottom: 22px; }
+    .recap-day-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb; margin-bottom: 8px; }
+    .recap-game { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fafaf8; border-radius: 6px; margin-bottom: 6px; font-size: 14px; }
+    .recap-game .field { font-size: 11px; color: #ccc; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; width: 60px; flex-shrink: 0; }
+    .recap-game .score { font-weight: 700; color: #1a1a1a; margin: 0 4px; }
+    .recap-day.playoff .recap-game { background: #fdf6e8; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header style="position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; z-index: 100;">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; justify-content: space-between; align-items: center; position: relative;">
+      <a href="index.html" style="text-decoration: none; display: flex; flex-direction: column; gap: 1px;">
+        <span style="font-family: 'Young Serif', serif; font-size: 18px; color: #1a1a1a; font-style: italic; line-height: 1.1;">🐢 Turtle League</span>
+        <span style="font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: #888; font-weight: 500; line-height: 1;">Prospect Park Soccer</span>
+      </a>
+      <button class="nav-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Open menu">☰</button>
+      <nav id="navMenu" class="nav-menu">
+        <a href="index.html">About</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="fall-2026-rsvp.html">Fall 2026 RSVP</a>
+        <div class="nav-dropdown" id="pastSeasonsDropdown">
+          <button class="nav-dropdown-toggle active" onclick="document.getElementById('pastSeasonsDropdown').classList.toggle('open')">Past Seasons ▾</button>
+          <div class="nav-dropdown-menu">
+            <a href="summer-2026.html" class="active">Summer 2026</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div style="padding-top: 56px;">
+
+    <!-- PAGE TITLE -->
+    <div style="text-align: center; padding: clamp(48px, 6vw, 80px) 24px clamp(28px, 4vw, 40px); background: #F9F8F6;">
+      <p style="font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #1a472a; margin-bottom: 20px;">Past Season</p>
+      <h1 style="font-family: 'Young Serif', serif; font-size: clamp(40px, 7vw, 64px); color: #1a1a1a; font-style: italic; line-height: 1; margin-bottom: 16px;">Summer 2026</h1>
+      <p style="font-size: 15px; color: #888;">🏆 Season Champion: <strong style="color: #1a472a;">Mint Conditions</strong></p>
+    </div>
+
+    <!-- TABS -->
+    <div style="padding: 0 24px 8px; background: #F9F8F6;">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="winners" onclick="showTab('winners')">Winners &amp; Stats</button>
+        <button class="tab-btn" data-tab="recap" onclick="showTab('recap')">Season Recap</button>
+      </div>
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- TAB: WINNERS & STATS                                           -->
+    <!-- ============================================================= -->
+    <div id="tab-winners" class="tab-panel active">
+
+      <section style="padding: clamp(32px, 5vw, 56px) 24px; background: #eef5e9; border-top: 1px solid #eee;">
+        <div style="max-width: 960px; margin: 0 auto;">
+          <h2 style="font-family: 'Young Serif', serif; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px; text-align: center;">Season Awards</h2>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+
+            <div class="award-card">
+              <div class="award-label">🏆 League Champion</div>
+              <div class="award-name">Mint Conditions</div>
+              <div class="award-sub">Beat Sweaty Yetis 2–0 in the final</div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-label">⚽ Golden Boot</div>
+              <div class="award-name">Agustina</div>
+              <div class="award-sub tc-white">Sweaty Yetis</div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-label">🥈 Silver Boot</div>
+              <div class="award-name">Olivia</div>
+              <div class="award-sub tc-blue">Sky Monsters</div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-label">🎯 Golden Team</div>
+              <div class="award-name tc-blue">Sky Monsters</div>
+              <div class="award-sub">Most different scorers all season</div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-label">🤝 Best Spirit</div>
+              <div class="award-name tc-white">Sweaty Yetis</div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-label">🌟 Mentor of the Season</div>
+              <div class="award-name">Angie</div>
+              <div class="award-sub">Runner-up: Colleen</div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-label">📈 Most Improved</div>
+              <div class="award-name">Lydia</div>
+              <div class="award-sub">Runners-up: Elise &amp; Halema</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- TAB: SEASON RECAP                                              -->
+    <!-- ============================================================= -->
+    <div id="tab-recap" class="tab-panel">
+
+      <section style="padding: clamp(32px, 5vw, 56px) 24px; background: white; border-top: 1px solid #eee;">
+        <div style="max-width: 960px; margin: 0 auto;">
+          <h2 style="font-family: 'Young Serif', serif; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px;">Teams</h2>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
+
+            <div class="team-card" style="background: #deeaf7;">
+              <h3 style="color: #0055c8;">Sky Monsters</h3>
+              <div class="captain" style="color: #5a8fcc;">Captain: Bettyjane</div>
+              <div class="players">Alma, Christi, Cindy, Emily G, Jane, Mari, MLE, Olivia, Quinn</div>
+            </div>
+
+            <div class="team-card" style="background: #f0f0ee;">
+              <h3 style="color: #333;">Sweaty Yetis</h3>
+              <div class="captain" style="color: #888;">Captain: Colleen</div>
+              <div class="players">Agustina, Debbie, Dulany, Elise, Holly, Jen, Nikkie, Sofia, Tamar</div>
+            </div>
+
+            <div class="team-card" style="background: #fdefd8;">
+              <h3 style="color: #c06000;">Peel Madrid</h3>
+              <div class="captain" style="color: #c89050;">Captain: Asya</div>
+              <div class="players">Alexei, China, Dana, Halema, Hannah K., Janine, Kara, Liz S., Meret</div>
+            </div>
+
+            <div class="team-card" style="background: #d8f0e0;">
+              <h3 style="color: #1a6632;">Mint Conditions</h3>
+              <div class="captain" style="color: #4a9962;">Captain: Martha</div>
+              <div class="players">Angie, Dahlia, Hanna H., Lucy, Lydia, Mary, Sarah, Sydney, Vera</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section style="padding: clamp(32px, 5vw, 56px) 24px; background: #F9F8F6; border-top: 1px solid #eee;">
+        <div style="max-width: 720px; margin: 0 auto;">
+          <h2 style="font-family: 'Young Serif', serif; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px;">Match History</h2>
+
+          <div class="recap-day">
+            <div class="recap-day-label">Game Day 1 · Wed, June 10</div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-blue">Sky Monsters</span><span class="score">2 – 0</span><span class="tc-orange">Peel Madrid</span></div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-white">Sweaty Yetis</span><span class="score">3 – 0</span><span class="tc-green">Mint Conditions</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-blue">Sky Monsters</span><span class="score">2 – 1</span><span class="tc-green">Mint Conditions</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-orange">Peel Madrid</span><span class="score">2 – 1</span><span class="tc-white">Sweaty Yetis</span></div>
+          </div>
+
+          <div class="recap-day">
+            <div class="recap-day-label">Game Day 2 · Wed, June 17</div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-orange">Peel Madrid</span><span class="score">0 – 2</span><span class="tc-green">Mint Conditions</span></div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-blue">Sky Monsters</span><span class="score">3 – 2</span><span class="tc-white">Sweaty Yetis</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-blue">Sky Monsters</span><span class="score">1 – 1</span><span class="tc-orange">Peel Madrid</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-white">Sweaty Yetis</span><span class="score">2 – 0</span><span class="tc-green">Mint Conditions</span></div>
+          </div>
+
+          <div class="recap-day">
+            <div class="recap-day-label">Game Day 3 · Tues, June 23</div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-orange">Peel Madrid</span><span class="score">0 – 1</span><span class="tc-white">Sweaty Yetis</span></div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-blue">Sky Monsters</span><span class="score">0 – 2</span><span class="tc-green">Mint Conditions</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-orange">Peel Madrid</span><span class="score">0 – 1</span><span class="tc-green">Mint Conditions</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-blue">Sky Monsters</span><span class="score">1 – 1</span><span class="tc-white">Sweaty Yetis</span></div>
+          </div>
+
+          <div class="recap-day">
+            <div class="recap-day-label">Game Day 4 · Tues, July 7</div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-orange">Peel Madrid</span><span class="score">1 – 1</span><span class="tc-blue">Sky Monsters</span></div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-white">Sweaty Yetis</span><span class="score">3 – 2</span><span class="tc-green">Mint Conditions</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-orange">Peel Madrid</span><span class="score">0 – 1</span><span class="tc-white">Sweaty Yetis</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-blue">Sky Monsters</span><span class="score">1 – 0</span><span class="tc-green">Mint Conditions</span></div>
+          </div>
+
+          <div class="recap-day">
+            <div class="recap-day-label">Game Day 5 · Tues, July 14</div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-orange">Peel Madrid</span><span class="score">1 – 2</span><span class="tc-green">Mint Conditions</span></div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-blue">Sky Monsters</span><span class="score">0 – 2</span><span class="tc-white">Sweaty Yetis</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-orange">Peel Madrid</span><span class="score">0 – 1</span><span class="tc-blue">Sky Monsters</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-white">Sweaty Yetis</span><span class="score">0 – 0</span><span class="tc-green">Mint Conditions</span></div>
+          </div>
+
+          <div class="recap-day">
+            <div class="recap-day-label">Game Day 6 · Wed, July 29 (postponed from Jul 21 due to storm)</div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-orange">Peel Madrid</span><span class="score">0 – 3</span><span class="tc-white">Sweaty Yetis</span></div>
+            <div class="recap-game"><span class="field">6:30 PM</span><span class="tc-blue">Sky Monsters</span><span class="score">0 – 2</span><span class="tc-green">Mint Conditions</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-orange">Peel Madrid</span><span class="score">0 – 0</span><span class="tc-green">Mint Conditions</span></div>
+            <div class="recap-game"><span class="field">7:30 PM</span><span class="tc-blue">Sky Monsters</span><span class="score">3 – 0</span><span class="tc-white">Sweaty Yetis</span></div>
+          </div>
+
+          <div class="recap-day playoff">
+            <div class="recap-day-label">Playoffs &amp; Finals · Tues, Aug 4</div>
+            <div class="recap-game"><span class="field">Semifinal</span><span class="tc-white">Sweaty Yetis (1st)</span><span class="score">2 – 0</span><span class="tc-orange">Peel Madrid (4th)</span></div>
+            <div class="recap-game"><span class="field">Semifinal</span><span class="tc-blue">Sky Monsters (2nd)</span><span class="score">0 – 2</span><span class="tc-green">Mint Conditions (3rd)</span></div>
+            <div class="recap-game"><span class="field">Final</span><span class="tc-green" style="font-weight:700;">Mint Conditions</span><span class="score">2 – 0</span><span class="tc-white">Sweaty Yetis</span></div>
+            <div class="recap-game"><span class="field">3rd Place</span><span class="tc-blue">Sky Monsters</span><span class="score">2 – 2</span><span class="tc-orange">Peel Madrid</span></div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="background: #111; padding: 32px 24px;">
+      <div style="max-width: 720px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+        <span style="font-family: 'Young Serif', serif; font-size: 16px; color: #bbb; font-style: italic;">🐢 Turtle League · Summer 2026</span>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+          <a href="index.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">About</a>
+          <a href="testimonials.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Testimonials</a>
+          <a href="fall-2026-rsvp.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Fall 2026 RSVP</a>
+          <a href="summer-2026.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Summer 2026</a>
+        </div>
+        <span style="font-size: 12px; color: #444;">© 2026 Prospect Park Soccer</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    function showTab(name) {
+      document.querySelectorAll('.tab-panel').forEach(function (el) {
+        el.classList.toggle('active', el.id === 'tab-' + name);
+      });
+      document.querySelectorAll('.tab-btn').forEach(function (el) {
+        el.classList.toggle('active', el.dataset.tab === name);
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      var dropdown = document.getElementById('pastSeasonsDropdown');
+      if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+    });
+  </script>
+
+</body>
+</html>

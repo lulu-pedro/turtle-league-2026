@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <title>Testimonials | Turtle League 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Player testimonials for Turtle League — Prospect Park Soccer's Women, Trans, Nonbinary summer league.">
+  <meta name="description" content="Player testimonials for Turtle League: Prospect Park Soccer's Women, Trans, Nonbinary summer league.">
   <meta property="og:title" content="Testimonials | Turtle League 2026">
-  <meta property="og:description" content="Player testimonials for Turtle League — Prospect Park Soccer's Women, Trans, Nonbinary summer league.">
+  <meta property="og:description" content="Player testimonials for Turtle League: Prospect Park Soccer's Women, Trans, Nonbinary summer league.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://turtleleague.com/testimonials.html">
   <meta property="og:image" content="https://turtleleague.com/images/pps-wtnb-summer-2025.jpeg">
@@ -21,17 +21,34 @@
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F9F8F6; color: #555; }
 
     .nav-menu { display: flex; gap: 4px; align-items: center; }
-    .nav-menu a { display: block; text-decoration: none; color: #999; font-size: 13px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; padding: 6px 10px; border-bottom: 2px solid transparent; transition: color 0.18s, border-color 0.18s; }
-    .nav-menu a:hover { color: #1a472a; border-bottom-color: #1a472a; }
-    .nav-menu a.active { color: #1a472a; font-weight: 600; border-bottom-color: #1a472a; }
+    .nav-menu > a, .nav-dropdown-toggle { display: block; text-decoration: none; color: #999; font-size: 13px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; padding: 6px 10px; border-bottom: 2px solid transparent; transition: color 0.18s, border-color 0.18s; background: none; border-left: none; border-right: none; border-top: none; font-family: inherit; cursor: pointer; }
+    .nav-menu > a:hover, .nav-dropdown-toggle:hover { color: #1a472a; border-bottom-color: #1a472a; }
+    .nav-menu > a.active, .nav-dropdown-toggle.active { color: #1a472a; font-weight: 600; border-bottom-color: #1a472a; }
     .nav-toggle { display: none; background: none; border: none; font-size: 22px; cursor: pointer; color: #1a1a1a; padding: 4px 8px; line-height: 1; }
+
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: 100%; right: 0; min-width: 160px;
+      background: white; border: 1px solid #eee; border-radius: 6px; box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      padding: 6px; z-index: 101;
+    }
+    .nav-dropdown.open .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block; text-decoration: none; color: #666; font-size: 13px; padding: 8px 10px;
+      border-radius: 4px; white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { background: #f4f4f0; color: #1a472a; }
 
     @media (max-width: 768px) {
       .nav-toggle { display: block; }
       .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; gap: 0; border-top: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.08); z-index: 99; }
       .nav-menu.open { display: flex; }
-      .nav-menu a { padding: 14px 20px; border-bottom: 1px solid #f0f0ee !important; font-size: 14px; }
-      .nav-menu a:hover { background: #fafaf8; }
+      .nav-menu > a, .nav-dropdown-toggle { padding: 14px 20px; border-bottom: 1px solid #f0f0ee !important; font-size: 14px; width: 100%; text-align: left; }
+      .nav-menu > a:hover, .nav-dropdown-toggle:hover { background: #fafaf8; }
+      .nav-dropdown { width: 100%; }
+      .nav-dropdown-menu { display: none; position: static; box-shadow: none; border: none; border-radius: 0; background: #fafaf8; padding: 0; }
+      .nav-dropdown.open .nav-dropdown-menu { display: block; }
+      .nav-dropdown-menu a { padding: 12px 20px 12px 32px; border-bottom: 1px solid #f0f0ee; }
     }
 
     .testimonial-form label { display: block; font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 6px; }
@@ -72,10 +89,14 @@
       <button class="nav-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Open menu">☰</button>
       <nav id="navMenu" class="nav-menu">
         <a href="index.html">About</a>
-        <a href="leaderboard.html">Stats</a>
-        <a href="schedule.html">Schedule &amp; RSVP</a>
-        <a href="teams.html">Teams</a>
         <a href="testimonials.html" class="active">Testimonials</a>
+        <a href="fall-2026-rsvp.html">Fall 2026 RSVP</a>
+        <div class="nav-dropdown" id="pastSeasonsDropdown">
+          <button class="nav-dropdown-toggle" onclick="document.getElementById('pastSeasonsDropdown').classList.toggle('open')">Past Seasons ▾</button>
+          <div class="nav-dropdown-menu">
+            <a href="summer-2026.html">Summer 2026</a>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -102,21 +123,21 @@
             <!-- ===== TESTIMONIAL — copy this whole block within a column and edit the quote + name ===== -->
             <blockquote style="background: #fff; border-left: 3px solid #1a472a; border-radius: 4px; padding: 24px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
               <p style="font-family: 'Lora', serif; font-style: normal; font-weight: 400; font-size: clamp(14px,1.8vw,16px); line-height: 1.55; color: #3a3a3a; margin: 0 0 14px;">"Turtle League has created a truly special and rare environment that successfully <strong>balances fun competition with a culture of inclusion</strong>. I am so grateful for a community where we can challenge ourselves on the pitch while prioritizing safety and joy!"</p>
-              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">— Asya</footer>
+              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">Asya</footer>
             </blockquote>
             <!-- ===== END TESTIMONIAL ===== -->
 
             <!-- ===== TESTIMONIAL — copy this whole block within a column and edit the quote + name ===== -->
             <blockquote style="background: #fff; border-left: 3px solid #1a472a; border-radius: 4px; padding: 24px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
               <p style="font-family: 'Lora', serif; font-style: normal; font-weight: 400; font-size: clamp(14px,1.8vw,16px); line-height: 1.55; color: #3a3a3a; margin: 0 0 14px;">"As a kid, I never played sports because as a fairly slow and uncoordinated person, I always felt that the best thing I could do for any team was just not be on it. Now at 49, my weekly soccer game is the best part of my week, and it would never have happened without PPS. PPS is a truly unique sports space where <strong>fun, community and learning are actually more important than winning</strong>, and people in their 20s to 70s play together."</p>
-              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">— Sarah E</footer>
+              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">Sarah E</footer>
             </blockquote>
             <!-- ===== END TESTIMONIAL ===== -->
 
             <!-- ===== TESTIMONIAL — copy this whole block within a column and edit the quote + name ===== -->
             <blockquote style="background: #fff; border-left: 3px solid #1a472a; border-radius: 4px; padding: 24px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
               <p style="font-family: 'Lora', serif; font-style: normal; font-weight: 400; font-size: clamp(14px,1.8vw,16px); line-height: 1.55; color: #3a3a3a; margin: 0 0 14px;">"PPS is an essential community-centered organization. <strong>It's truly welcoming to all, regardless of age, ability, or gender.</strong> After a difficult day at the office, nothing cheers me up more than playing soccer with wonderful people who value camaraderie over competition."</p>
-              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">— Alexei E</footer>
+              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">Alexei E</footer>
             </blockquote>
             <!-- ===== END TESTIMONIAL ===== -->
           </div>
@@ -125,14 +146,14 @@
             <!-- ===== TESTIMONIAL — copy this whole block within a column and edit the quote + name ===== -->
             <blockquote style="background: #fff; border-left: 3px solid #1a472a; border-radius: 4px; padding: 24px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
               <p style="font-family: 'Lora', serif; font-style: normal; font-weight: 400; font-size: clamp(14px,1.8vw,16px); line-height: 1.55; color: #3a3a3a; margin: 0 0 14px;">"<strong>Turtle league has helped me find a home on the soccer field again</strong> after a decade of not playing. It is a necessary community to <strong>welcome underrepresented women, trans, and nonbinary players</strong> in a space that feels friendly and supportive to all levels. Turtle league is a truly special community and has transformed my experience in New York."</p>
-              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">— Dulany</footer>
+              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">Dulany</footer>
             </blockquote>
             <!-- ===== END TESTIMONIAL ===== -->
 
             <!-- ===== TESTIMONIAL — copy this whole block within a column and edit the quote + name ===== -->
             <blockquote style="background: #fff; border-left: 3px solid #1a472a; border-radius: 4px; padding: 24px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
               <p style="font-family: 'Lora', serif; font-style: normal; font-weight: 400; font-size: clamp(14px,1.8vw,16px); line-height: 1.55; color: #3a3a3a; margin: 0 0 14px;">"Turtle league is a safe, inclusive space that welcomes women, trans, and non-binary players of all different skill levels. When I returned to playing soccer as an adult, I was intimidated by the competitive energy of other leagues, but Turtle League prioritizes safe play and good vibes above all else. The result is a vibrant, tight-knit, diverse community that has spanned decades and <strong>always has room for one more</strong>. In a world where <strong>women and queer people are still regularly excluded from athletic spaces</strong>, Turtle League is truly special organization, on the pitch and off."</p>
-              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">— Angie G</footer>
+              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">Angie G</footer>
             </blockquote>
             <!-- ===== END TESTIMONIAL ===== -->
           </div>
@@ -141,14 +162,14 @@
             <!-- ===== TESTIMONIAL — copy this whole block within a column and edit the quote + name ===== -->
             <blockquote style="background: #fff; border-left: 3px solid #1a472a; border-radius: 4px; padding: 24px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
               <p style="font-family: 'Lora', serif; font-style: normal; font-weight: 400; font-size: clamp(14px,1.8vw,16px); line-height: 1.55; color: #3a3a3a; margin: 0 0 14px;">"Turtle league is that rarest of New York institutions where amateur female athletes are taken seriously, where trans and non-binary folk are an integral part of the community, where players of all levels can be challenged without being intimidated, and where <strong>care and community are worth more than the final score</strong>. Here age truly ain't nothing but a number. For the love of the game, turtle league plays beautiful soccer with teams of beautiful people."</p>
-              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">— Emily W</footer>
+              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">Emily W</footer>
             </blockquote>
             <!-- ===== END TESTIMONIAL ===== -->
 
             <!-- ===== TESTIMONIAL — copy this whole block within a column and edit the quote + name ===== -->
             <blockquote style="background: #fff; border-left: 3px solid #1a472a; border-radius: 4px; padding: 24px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
               <p style="font-family: 'Lora', serif; font-style: normal; font-weight: 400; font-size: clamp(14px,1.8vw,16px); line-height: 1.55; color: #3a3a3a; margin: 0 0 14px;">"<strong>As possibly the oldest recreational soccer player in NYC, I'm 77</strong>, Turtle League has given me a place to play on a more competitive level with women. There are few all women's leagues in this city, usually with former collegiate players who are not open to an older player whose skill level was not formed as a child. <strong>We need more Turtle League!</strong>"</p>
-              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">— Sidney</footer>
+              <footer style="font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: none; padding: 0;">Sidney</footer>
             </blockquote>
             <!-- ===== END TESTIMONIAL ===== -->
           </div>
@@ -218,10 +239,9 @@
         <span style="font-family: 'Young Serif', serif; font-size: 16px; color: #bbb; font-style: italic;">🐢 Turtle League 2026</span>
         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
           <a href="index.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">About</a>
-          <a href="leaderboard.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Stats</a>
-          <a href="schedule.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Schedule</a>
-          <a href="teams.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Teams</a>
           <a href="testimonials.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Testimonials</a>
+          <a href="fall-2026-rsvp.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Fall 2026 RSVP</a>
+          <a href="summer-2026.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Summer 2026</a>
         </div>
         <span style="font-size: 12px; color: #444;">© 2026 Prospect Park Soccer</span>
       </div>
@@ -230,6 +250,11 @@
   </div>
 
   <script>
+    document.addEventListener('click', function (e) {
+      var dropdown = document.getElementById('pastSeasonsDropdown');
+      if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+    });
+
     const FORM_HASH = '79232799d4cb2761e7c51641240d76c0';
 
     const form = document.getElementById('testimonialForm');
@@ -245,7 +270,7 @@
       e.preventDefault();
 
       if (FORM_HASH === 'YOUR_FORMSUBMIT_HASH_HERE') {
-        showStatus('This form isn\'t connected yet — see the setup note in the page source.', 'error');
+        showStatus('This form isn\'t connected yet. See the setup note in the page source.', 'error');
         return;
       }
 
@@ -264,11 +289,11 @@
           return r.json();
         })
         .then(function () {
-          showStatus('Thank you — your testimonial was sent!', 'success');
+          showStatus('Thank you! Your testimonial was sent.', 'success');
           form.reset();
         })
         .catch(function () {
-          showStatus('Something went wrong — please try again or email Laura directly.', 'error');
+          showStatus('Something went wrong. Please try again or email Laura directly.', 'error');
         })
         .finally(function () {
           submitBtn.disabled = false;
