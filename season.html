@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fall 2026 | Turtle League</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fall 2026 season for Turtle League: Prospect Park Soccer's Women, Trans, Nonbinary soccer league. Teams, schedule, and stats.">
+  <meta property="og:title" content="Fall 2026 | Turtle League">
+  <meta property="og:description" content="Fall 2026 season for Turtle League: teams, schedule, and stats.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://turtleleague.com/season.html">
+  <meta property="og:image" content="https://turtleleague.com/images/pps-wtnb-summer-2025.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Karla:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Karla', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 300; background: #F9F8F6; color: #555; }
+
+    .nav-menu { display: flex; gap: 4px; align-items: center; }
+    .nav-menu > a, .nav-dropdown-toggle { display: block; text-decoration: none; color: #999; font-size: 13px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; padding: 6px 10px; border-bottom: 2px solid transparent; transition: color 0.18s, border-color 0.18s; background: none; border-left: none; border-right: none; border-top: none; font-family: inherit; cursor: pointer; }
+    .nav-menu > a:hover, .nav-dropdown-toggle:hover { color: #1a472a; border-bottom-color: #1a472a; }
+    .nav-menu > a.active, .nav-dropdown-toggle.active { color: #1a472a; font-weight: 600; border-bottom-color: #1a472a; }
+    .nav-toggle { display: none; background: none; border: none; font-size: 22px; cursor: pointer; color: #1a1a1a; padding: 4px 8px; line-height: 1; }
+
+    /* Past Seasons dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: 100%; right: 0; min-width: 160px;
+      background: white; border: 1px solid #eee; border-radius: 6px; box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      padding: 6px; z-index: 101;
+    }
+    .nav-dropdown.open .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block; text-decoration: none; color: #666; font-size: 13px; padding: 8px 10px;
+      border-radius: 4px; white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { background: #f4f4f0; color: #1a472a; }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; gap: 0; border-top: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.08); z-index: 99; }
+      .nav-menu.open { display: flex; }
+      .nav-menu > a, .nav-dropdown-toggle { padding: 14px 20px; border-bottom: 1px solid #f0f0ee !important; font-size: 14px; width: 100%; text-align: left; }
+      .nav-menu > a:hover, .nav-dropdown-toggle:hover { background: #fafaf8; }
+      .nav-dropdown { width: 100%; }
+      .nav-dropdown-menu { display: none; position: static; box-shadow: none; border: none; border-radius: 0; background: #fafaf8; padding: 0; }
+      .nav-dropdown.open .nav-dropdown-menu { display: block; }
+      .nav-dropdown-menu a { padding: 12px 20px 12px 32px; border-bottom: 1px solid #f0f0ee; }
+    }
+
+    .team-card { background: white; border: 1px solid #eee; border-radius: 10px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    .team-card h3 { font-family: 'Bitter', serif; font-weight: 600; font-size: 20px; font-style: italic; color: #1a472a; margin-bottom: 14px; }
+    .team-card .players { list-style: none; font-size: 14px; color: #444; }
+    .team-card .players li { padding: 4px 0; border-bottom: 1px solid #f4f4f0; }
+    .team-card .players li:last-child { border-bottom: none; }
+
+    .teams-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    @media (max-width: 700px) {
+      .teams-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .rsvp-cta { display: inline-block; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: white; background: #1a472a; border-radius: 6px; padding: 14px 28px; transition: background 0.18s; }
+    .rsvp-cta:hover { background: #143620; }
+
+    /* Tabs */
+    .tab-buttons { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .tab-btn {
+      font: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+      color: #999; background: white; border: 1px solid #e0e0d8; border-radius: 999px; padding: 10px 22px;
+      cursor: pointer; transition: all 0.18s;
+    }
+    .tab-btn:hover { color: #1a472a; border-color: #1a472a; }
+    .tab-btn.active { color: white; background: #1a472a; border-color: #1a472a; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .schedule-day { border-left: 3px solid #ded9c2; padding-left: 20px; margin-bottom: 32px; }
+    .schedule-day-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+    .schedule-day-header h3 { font-family: 'Bitter', serif; font-weight: 700; font-style: italic; font-size: 20px; color: #1a1a1a; }
+    .schedule-day-date { font-size: 14px; color: #999; }
+    .schedule-day-divider { border: none; border-top: 1px solid #eee; margin-bottom: 18px; }
+    .schedule-round-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb; margin-bottom: 8px; }
+    .schedule-round { margin-bottom: 18px; }
+    .schedule-round:last-child { margin-bottom: 0; }
+    .schedule-game { display: flex; align-items: center; gap: 10px; background: #f5f5f1; border-radius: 8px; padding: 14px 18px; margin-bottom: 8px; font-size: 16px; font-weight: 600; color: #1a1a1a; }
+    .schedule-game:last-child { margin-bottom: 0; }
+    .schedule-game .field { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #999; width: 56px; flex-shrink: 0; }
+    .schedule-game .vs { font-weight: 700; color: #999; margin: 0 8px; }
+    .schedule-day.playoff .schedule-game { background: #fdf6e8; }
+    .schedule-note { font-size: 13px; color: #999; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header style="position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; z-index: 100;">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; justify-content: space-between; align-items: center; position: relative;">
+      <a href="index.html" style="text-decoration: none; display: flex; flex-direction: column; gap: 1px;">
+        <span style="font-family: 'Bitter', serif; font-weight: 600; font-size: 18px; color: #1a1a1a; font-style: italic; line-height: 1.1;">🐢 Turtle League</span>
+        <span style="font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: #888; font-weight: 500; line-height: 1;">Prospect Park Soccer</span>
+      </a>
+      <button class="nav-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Open menu">☰</button>
+      <nav id="navMenu" class="nav-menu">
+        <a href="index.html">About</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="season.html" class="active">Fall 2026</a>
+        <div class="nav-dropdown" id="pastSeasonsDropdown">
+          <button class="nav-dropdown-toggle" onclick="document.getElementById('pastSeasonsDropdown').classList.toggle('open')">Past Seasons ▾</button>
+          <div class="nav-dropdown-menu">
+            <a href="summer-2026.html">Summer 2026</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div style="padding-top: 56px;">
+
+    <!-- PAGE TITLE -->
+    <div style="text-align: center; padding: clamp(48px, 6vw, 80px) 24px clamp(28px, 4vw, 40px); background: #F9F8F6;">
+      <p style="font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #1a472a; margin-bottom: 20px;">Current Season</p>
+      <h1 style="font-family: 'Bitter', serif; font-weight: 700; font-size: clamp(40px, 7vw, 64px); color: #1a1a1a; font-style: italic; line-height: 1; margin-bottom: 16px;">Fall 2026</h1>
+      <p style="font-size: 15px; color: #888;">Brooklyn · Tuesdays, Sept 8 – Oct 13</p>
+    </div>
+
+    <!-- TABS -->
+    <div style="padding: 0 24px 8px; background: #F9F8F6;">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="teams" onclick="showTab('teams')">Teams</button>
+        <button class="tab-btn" data-tab="schedule" onclick="showTab('schedule')">Schedule</button>
+      </div>
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- TAB: TEAMS                                                     -->
+    <!-- ============================================================= -->
+    <div id="tab-teams" class="tab-panel active">
+
+    <!-- TEAMS -->
+    <section style="padding: clamp(32px, 5vw, 56px) 24px; background: white; border-top: 1px solid #eee;">
+      <div style="max-width: 960px; margin: 0 auto;">
+        <h2 style="font-family: 'Bitter', serif; font-weight: 600; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px;">Teams</h2>
+
+        <div class="teams-grid">
+
+          <div class="team-card">
+            <h3>Argyle</h3>
+            <ul class="players">
+              <li>Dulany</li>
+              <li>Elise</li>
+              <li>Em G</li>
+              <li>Kara</li>
+              <li>Sidney</li>
+              <li>Susana</li>
+              <li>Tatiana</li>
+            </ul>
+          </div>
+
+          <div class="team-card">
+            <h3>Rugby</h3>
+            <ul class="players">
+              <li>Aissata</li>
+              <li>Courtney</li>
+              <li>Emily (MLE)</li>
+              <li>Jen</li>
+              <li>Mary</li>
+              <li>Sarah</li>
+              <li>Wendy</li>
+            </ul>
+          </div>
+
+          <div class="team-card">
+            <h3>Caton</h3>
+            <ul class="players">
+              <li>Agustina</li>
+              <li>Alexei</li>
+              <li>Allegra</li>
+              <li>Debbie</li>
+              <li>Jane</li>
+              <li>Martha</li>
+              <li>Minh</li>
+            </ul>
+          </div>
+
+          <div class="team-card">
+            <h3>Parkside</h3>
+            <ul class="players">
+              <li>Hannah Kate</li>
+              <li>Kirsten</li>
+              <li>Marilee</li>
+              <li>Nikkie</li>
+              <li>Sunny</li>
+              <li>Tamar</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- TAB: SCHEDULE                                                  -->
+    <!-- ============================================================= -->
+    <div id="tab-schedule" class="tab-panel">
+
+    <section style="padding: clamp(32px, 5vw, 56px) 24px; background: #F9F8F6; border-top: 1px solid #eee;">
+      <div style="max-width: 720px; margin: 0 auto;">
+        <h2 style="font-family: 'Bitter', serif; font-weight: 600; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px; text-align: center;">Schedule</h2>
+
+        <div class="schedule-day">
+          <div class="schedule-day-header"><h3>Game Day 1</h3><span class="schedule-day-date">Tue, Sept 8</span></div>
+          <hr class="schedule-day-divider">
+          <div class="schedule-round">
+            <div class="schedule-round-label">Game 1</div>
+            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Parkside</div>
+            <div class="schedule-game"><span class="field">Field 2</span>Rugby <span class="vs">vs</span> Caton</div>
+          </div>
+          <div class="schedule-round">
+            <div class="schedule-round-label">Game 2</div>
+            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Caton</div>
+            <div class="schedule-game"><span class="field">Field 2</span>Parkside <span class="vs">vs</span> Rugby</div>
+          </div>
+        </div>
+
+        <div class="schedule-day">
+          <div class="schedule-day-header"><h3>Game Day 2</h3><span class="schedule-day-date">Tue, Sept 15</span></div>
+          <hr class="schedule-day-divider">
+          <div class="schedule-round">
+            <div class="schedule-round-label">Game 1</div>
+            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Rugby</div>
+            <div class="schedule-game"><span class="field">Field 2</span>Caton <span class="vs">vs</span> Parkside</div>
+          </div>
+          <div class="schedule-round">
+            <div class="schedule-round-label">Game 2</div>
+            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Parkside</div>
+            <div class="schedule-game"><span class="field">Field 2</span>Rugby <span class="vs">vs</span> Caton</div>
+          </div>
+        </div>
+
+        <div class="schedule-day">
+          <div class="schedule-day-header"><h3>Game Day 3</h3><span class="schedule-day-date">Tue, Sept 22</span></div>
+          <hr class="schedule-day-divider">
+          <div class="schedule-round">
+            <div class="schedule-round-label">Game 1</div>
+            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Caton</div>
+            <div class="schedule-game"><span class="field">Field 2</span>Parkside <span class="vs">vs</span> Rugby</div>
+          </div>
+          <div class="schedule-round">
+            <div class="schedule-round-label">Game 2</div>
+            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Rugby</div>
+            <div class="schedule-game"><span class="field">Field 2</span>Caton <span class="vs">vs</span> Parkside</div>
+          </div>
+        </div>
+
+        <div class="schedule-day">
+          <div class="schedule-day-header"><h3>Game Day 4</h3><span class="schedule-day-date">Tue, Sept 29</span></div>
+          <hr class="schedule-day-divider">
+          <div class="schedule-round">
+            <div class="schedule-round-label">Game 1</div>
+            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Parkside</div>
+            <div class="schedule-game"><span class="field">Field 2</span>Rugby <span class="vs">vs</span> Caton</div>
+          </div>
+          <div class="schedule-note">1-game day — only 1 round scheduled.</div>
+        </div>
+
+        <div class="schedule-day">
+          <div class="schedule-day-header"><h3>Game Day 5</h3><span class="schedule-day-date">Tue, Oct 6</span></div>
+          <hr class="schedule-day-divider">
+          <div class="schedule-round">
+            <div class="schedule-round-label">Game 1</div>
+            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Caton</div>
+            <div class="schedule-game"><span class="field">Field 2</span>Parkside <span class="vs">vs</span> Rugby</div>
+          </div>
+          <div class="schedule-note">1-game day — early sunset may only allow 1 round.</div>
+        </div>
+
+        <div class="schedule-day playoff">
+          <div class="schedule-day-header"><h3>Playoffs &amp; Finals</h3><span class="schedule-day-date">Tue, Oct 13</span></div>
+          <hr class="schedule-day-divider">
+          <div class="schedule-round">
+            <div class="schedule-round-label">Final</div>
+            <div class="schedule-game"><span class="field">Field 1</span>1st Seed <span class="vs">vs</span> 2nd Seed</div>
+          </div>
+          <div class="schedule-round">
+            <div class="schedule-round-label">3rd Place</div>
+            <div class="schedule-game"><span class="field">Field 2</span>3rd Seed <span class="vs">vs</span> 4th Seed</div>
+          </div>
+          <div class="schedule-note">Seeds are based on final regular-season standings.</div>
+        </div>
+
+        <p style="font-size: 14px; color: #999; margin-top: 8px; text-align: center;">Stats will be posted here once games are played.</p>
+      </div>
+    </section>
+
+    </div>
+
+    <!-- RSVP CTA -->
+    <section style="padding: clamp(32px, 5vw, 56px) 24px; background: #eef5e9; border-top: 1px solid #eee; text-align: center;">
+      <div style="max-width: 720px; margin: 0 auto;">
+        <h2 style="font-family: 'Bitter', serif; font-weight: 600; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 16px;">Want to play?</h2>
+        <p style="font-size: 15px; color: #666; margin-bottom: 24px;">Teams are set but we are looking for Free Agents each week.</p>
+        <a href="fall-2026-rsvp.html" class="rsvp-cta">RSVP for Fall 2026 →</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="background: #111; padding: 32px 24px;">
+      <div style="max-width: 720px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+        <span style="font-family: 'Bitter', serif; font-weight: 600; font-size: 16px; color: #bbb; font-style: italic;">🐢 Turtle League · Fall 2026</span>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+          <a href="index.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">About</a>
+          <a href="testimonials.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Testimonials</a>
+          <a href="season.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Fall 2026</a>
+          <a href="summer-2026.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Summer 2026</a>
+        </div>
+        <span style="font-size: 12px; color: #444;">© 2026 Prospect Park Soccer</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    function showTab(name) {
+      document.querySelectorAll('.tab-panel').forEach(function (el) {
+        el.classList.toggle('active', el.id === 'tab-' + name);
+      });
+      document.querySelectorAll('.tab-btn').forEach(function (el) {
+        el.classList.toggle('active', el.dataset.tab === name);
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      var dropdown = document.getElementById('pastSeasonsDropdown');
+      if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+    });
+  </script>
+
+</body>
+</html>
