@@ -57,6 +57,14 @@
     .team-card .players { list-style: none; font-size: 14px; color: #444; }
     .team-card .players li { padding: 4px 0; border-bottom: 1px solid #f4f4f0; }
     .team-card .players li:last-child { border-bottom: none; }
+    .team-card.team-argyle { background: #fdefd8; border-color: #f5dcae; }
+    .team-card.team-argyle h3 { color: #d97000; }
+    .team-card.team-rugby { background: #deeaf7; border-color: #c3ddf2; }
+    .team-card.team-rugby h3 { color: #0055c8; }
+    .team-card.team-caton { background: #f0f0ee; border-color: #ddddd9; }
+    .team-card.team-caton h3 { color: #555555; }
+    .team-card.team-parkside { background: #d8f0e0; border-color: #bfe6cf; }
+    .team-card.team-parkside h3 { color: #1a8040; }
 
     .teams-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     @media (max-width: 700px) {
@@ -196,7 +204,7 @@
 
         <div class="teams-grid">
 
-          <div class="team-card">
+          <div class="team-card team-argyle">
             <h3>Argyle</h3>
             <ul class="players">
               <li>Dulany</li>
@@ -209,7 +217,7 @@
             </ul>
           </div>
 
-          <div class="team-card">
+          <div class="team-card team-rugby">
             <h3>Rugby</h3>
             <ul class="players">
               <li>Aissata</li>
@@ -222,7 +230,7 @@
             </ul>
           </div>
 
-          <div class="team-card">
+          <div class="team-card team-caton">
             <h3>Caton</h3>
             <ul class="players">
               <li>Agustina</li>
@@ -235,7 +243,7 @@
             </ul>
           </div>
 
-          <div class="team-card">
+          <div class="team-card team-parkside">
             <h3>Parkside</h3>
             <ul class="players">
               <li>Hannah Kate</li>
@@ -267,13 +275,13 @@
           <hr class="schedule-day-divider">
           <div class="schedule-round">
             <div class="schedule-round-label">Game 1</div>
-            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Parkside</div>
-            <div class="schedule-game"><span class="field">Field 2</span>Rugby <span class="vs">vs</span> Caton</div>
+            <div class="schedule-game"><span class="field">Field 1</span><span class="tc-orange">Argyle</span> <span class="vs">vs</span> <span class="tc-green">Parkside</span></div>
+            <div class="schedule-game"><span class="field">Field 2</span><span class="tc-blue">Rugby</span> <span class="vs">vs</span> <span class="tc-white">Caton</span></div>
           </div>
           <div class="schedule-round">
             <div class="schedule-round-label">Game 2</div>
-            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Caton</div>
-            <div class="schedule-game"><span class="field">Field 2</span>Parkside <span class="vs">vs</span> Rugby</div>
+            <div class="schedule-game"><span class="field">Field 1</span><span class="tc-orange">Argyle</span> <span class="vs">vs</span> <span class="tc-white">Caton</span></div>
+            <div class="schedule-game"><span class="field">Field 2</span><span class="tc-green">Parkside</span> <span class="vs">vs</span> <span class="tc-blue">Rugby</span></div>
           </div>
         </div>
 
@@ -282,13 +290,13 @@
           <hr class="schedule-day-divider">
           <div class="schedule-round">
             <div class="schedule-round-label">Game 1</div>
-            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Rugby</div>
-            <div class="schedule-game"><span class="field">Field 2</span>Caton <span class="vs">vs</span> Parkside</div>
+            <div class="schedule-game"><span class="field">Field 1</span><span class="tc-orange">Argyle</span> <span class="vs">vs</span> <span class="tc-blue">Rugby</span></div>
+            <div class="schedule-game"><span class="field">Field 2</span><span class="tc-white">Caton</span> <span class="vs">vs</span> <span class="tc-green">Parkside</span></div>
           </div>
           <div class="schedule-round">
             <div class="schedule-round-label">Game 2</div>
-            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Parkside</div>
-            <div class="schedule-game"><span class="field">Field 2</span>Rugby <span class="vs">vs</span> Caton</div>
+            <div class="schedule-game"><span class="field">Field 1</span><span class="tc-orange">Argyle</span> <span class="vs">vs</span> <span class="tc-green">Parkside</span></div>
+            <div class="schedule-game"><span class="field">Field 2</span><span class="tc-blue">Rugby</span> <span class="vs">vs</span> <span class="tc-white">Caton</span></div>
           </div>
         </div>
 
@@ -297,13 +305,13 @@
           <hr class="schedule-day-divider">
           <div class="schedule-round">
             <div class="schedule-round-label">Game 1</div>
-            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Caton</div>
-            <div class="schedule-game"><span class="field">Field 2</span>Parkside <span class="vs">vs</span> Rugby</div>
+            <div class="schedule-game"><span class="field">Field 1</span><span class="tc-orange">Argyle</span> <span class="vs">vs</span> <span class="tc-white">Caton</span></div>
+            <div class="schedule-game"><span class="field">Field 2</span><span class="tc-green">Parkside</span> <span class="vs">vs</span> <span class="tc-blue">Rugby</span></div>
           </div>
           <div class="schedule-round">
             <div class="schedule-round-label">Game 2</div>
-            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Rugby</div>
-            <div class="schedule-game"><span class="field">Field 2</span>Caton <span class="vs">vs</span> Parkside</div>
+            <div class="schedule-game"><span class="field">Field 1</span><span class="tc-orange">Argyle</span> <span class="vs">vs</span> <span class="tc-blue">Rugby</span></div>
+            <div class="schedule-game"><span class="field">Field 2</span><span class="tc-white">Caton</span> <span class="vs">vs</span> <span class="tc-green">Parkside</span></div>
           </div>
         </div>
 
@@ -312,8 +320,8 @@
           <hr class="schedule-day-divider">
           <div class="schedule-round">
             <div class="schedule-round-label">Game 1</div>
-            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Parkside</div>
-            <div class="schedule-game"><span class="field">Field 2</span>Rugby <span class="vs">vs</span> Caton</div>
+            <div class="schedule-game"><span class="field">Field 1</span><span class="tc-orange">Argyle</span> <span class="vs">vs</span> <span class="tc-green">Parkside</span></div>
+            <div class="schedule-game"><span class="field">Field 2</span><span class="tc-blue">Rugby</span> <span class="vs">vs</span> <span class="tc-white">Caton</span></div>
           </div>
           <div class="schedule-note">1-game day — only 1 round scheduled.</div>
         </div>
@@ -323,8 +331,8 @@
           <hr class="schedule-day-divider">
           <div class="schedule-round">
             <div class="schedule-round-label">Game 1</div>
-            <div class="schedule-game"><span class="field">Field 1</span>Argyle <span class="vs">vs</span> Caton</div>
-            <div class="schedule-game"><span class="field">Field 2</span>Parkside <span class="vs">vs</span> Rugby</div>
+            <div class="schedule-game"><span class="field">Field 1</span><span class="tc-orange">Argyle</span> <span class="vs">vs</span> <span class="tc-white">Caton</span></div>
+            <div class="schedule-game"><span class="field">Field 2</span><span class="tc-green">Parkside</span> <span class="vs">vs</span> <span class="tc-blue">Rugby</span></div>
           </div>
           <div class="schedule-note">1-game day — early sunset may only allow 1 round.</div>
         </div>
