@@ -92,6 +92,47 @@
     .schedule-game .vs { font-weight: 700; color: #999; margin: 0 8px; }
     .schedule-day.playoff .schedule-game { background: #fdf6e8; }
     .schedule-note { font-size: 13px; color: #999; margin-top: 10px; }
+
+    /* Team colors */
+    .tc-orange { color: #d97000; }
+    .tc-blue   { color: #0055c8; }
+    .tc-white  { color: #555555; }
+    .tc-green  { color: #1a8040; }
+
+    /* Standings */
+    .standings-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    .standings-table th, .standings-table td { padding: 10px 14px; font-size: 14px; text-align: center; border-bottom: 1px solid #f0f0ee; }
+    .standings-table th { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #999; background: #fafaf8; }
+    .standings-table td:first-child, .standings-table th:first-child { text-align: left; font-weight: 600; }
+    .standings-table tbody tr:last-child td { border-bottom: none; }
+
+    /* Leaders (Golden Boot / Golden Team) */
+    .leader-card { background: white; border-radius: 8px; padding: 20px 22px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    .leader-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #1a472a; margin-bottom: 12px; }
+    .leader-list { list-style: none; }
+    .leader-list li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f4f4f0; font-size: 14px; }
+    .leader-list li:last-child { border-bottom: none; }
+    .leader-rank { font-weight: 700; color: #bbb; width: 18px; flex-shrink: 0; }
+    .leader-name { font-weight: 600; color: #1a1a1a; }
+    .leader-team { font-size: 12px; color: #999; flex: 1; }
+    .leader-goals { font-weight: 700; color: #1a472a; }
+    .leader-body { flex: 1; }
+    .leader-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+    .leader-scorers { font-size: 12px; color: #999; margin-top: 2px; }
+
+    /* Match history */
+    .match-day { margin-bottom: 22px; }
+    .match-day:last-child { margin-bottom: 0; }
+    .match-day-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb; margin-bottom: 8px; }
+    .match-round-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb; margin: 14px 0 8px; }
+    .match-round-label:first-of-type { margin-top: 0; }
+    .match-game { background: white; border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; }
+    .match-game:last-child { margin-bottom: 0; }
+    .match-game-row { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
+    .match-game-row .field { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #999; width: 56px; flex-shrink: 0; }
+    .match-game-row .score { font-weight: 700; color: #1a1a1a; margin: 0 4px; }
+    .match-game-row .swing { margin-left: auto; font-size: 11px; font-weight: 700; color: #1a472a; text-transform: uppercase; letter-spacing: 0.4px; }
+    .match-game-scorers { font-size: 12px; color: #999; margin-top: 6px; padding-left: 66px; }
   </style>
 </head>
 <body>
@@ -132,6 +173,7 @@
       <div class="tab-buttons">
         <button class="tab-btn active" data-tab="teams" onclick="showTab('teams')">Teams</button>
         <button class="tab-btn" data-tab="schedule" onclick="showTab('schedule')">Schedule</button>
+        <button class="tab-btn" data-tab="stats" onclick="showTab('stats')">Stats</button>
       </div>
     </div>
 
@@ -294,9 +336,54 @@
           <div class="schedule-note">Seeds are based on final regular-season standings.</div>
         </div>
 
-        <p style="font-size: 14px; color: #999; margin-top: 8px; text-align: center;">Stats will be posted here once games are played.</p>
+        <p style="font-size: 14px; color: #999; margin-top: 8px; text-align: center;">See the Stats tab for results and standings.</p>
       </div>
     </section>
+
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- TAB: STATS                                                     -->
+    <!-- ============================================================= -->
+    <div id="tab-stats" class="tab-panel">
+
+      <!-- STANDINGS -->
+      <section style="padding: clamp(32px, 5vw, 56px) 24px; background: white; border-top: 1px solid #eee;">
+        <div style="max-width: 720px; margin: 0 auto;">
+          <h2 style="font-family: 'Bitter', serif; font-weight: 600; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px; text-align: center;">Standings</h2>
+          <table class="standings-table">
+            <thead>
+              <tr><th>Team</th><th>W</th><th>D</th><th>L</th><th>Pts</th></tr>
+            </thead>
+            <tbody id="standingsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- LEADERS -->
+      <section style="padding: clamp(32px, 5vw, 56px) 24px; background: #eef5e9; border-top: 1px solid #eee;">
+        <div style="max-width: 720px; margin: 0 auto;">
+          <h2 style="font-family: 'Bitter', serif; font-weight: 600; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px; text-align: center;">Leaders</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+            <div class="leader-card">
+              <div class="leader-label">⚽ Golden Boot</div>
+              <ol class="leader-list" id="goldenBootList"></ol>
+            </div>
+            <div class="leader-card">
+              <div class="leader-label">🎯 Golden Team</div>
+              <ol class="leader-list" id="goldenTeamList"></ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MATCH HISTORY -->
+      <section style="padding: clamp(32px, 5vw, 56px) 24px; background: #F9F8F6; border-top: 1px solid #eee;">
+        <div style="max-width: 720px; margin: 0 auto;">
+          <h2 style="font-family: 'Bitter', serif; font-weight: 600; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px; text-align: center;">Match History</h2>
+          <div id="matchHistory"></div>
+        </div>
+      </section>
 
     </div>
 
@@ -339,6 +426,146 @@
       var dropdown = document.getElementById('pastSeasonsDropdown');
       if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
     });
+
+    // ===================================================================
+    // STATS — source of truth is GAME_DATA. Everything else (standings,
+    // Golden Boot, Golden Team, match history) is computed from it below.
+    // Append a new { day, game, field, t1, t2, scorers } entry per game
+    // played; one array entry per goal in `scorers`, keyed by team name.
+    // ===================================================================
+    var CC = { "Argyle": 'tc-orange', "Rugby": 'tc-blue', "Caton": 'tc-white', "Parkside": 'tc-green' };
+
+    var GAME_DATA = [
+      { day: 1, game: 1, field: 1, t1: "Argyle", t2: "Parkside",
+        scorers: { "Argyle": [], "Parkside": ["Hannah"] } },
+      { day: 1, game: 1, field: 2, t1: "Rugby", t2: "Caton",
+        scorers: { "Rugby": [], "Caton": ["Agustina", "Agustina", "Martha"] } },
+      { day: 1, game: 2, field: 1, t1: "Argyle", t2: "Caton",
+        scorers: { "Argyle": ["Janine (FA)", "Janine (FA)"], "Caton": ["Minh", "Agustina", "Jane", "Martha"] } },
+      { day: 1, game: 2, field: 2, t1: "Parkside", t2: "Rugby",
+        scorers: { "Parkside": [], "Rugby": ["Beyza (FA)"] } }
+    ];
+
+    function parseGames() {
+      return GAME_DATA.map(function (g) {
+        var goals = {};
+        goals[g.t1] = (g.scorers[g.t1] || []).length;
+        goals[g.t2] = (g.scorers[g.t2] || []).length;
+        return { day: g.day, game: g.game, field: g.field, teams: [g.t1, g.t2], goals: goals, scorers: g.scorers };
+      });
+    }
+
+    function getStandings(games) {
+      var table = {};
+      function row(team) {
+        if (!table[team]) table[team] = { team: team, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 };
+        return table[team];
+      }
+      games.forEach(function (g) {
+        var t1 = g.teams[0], t2 = g.teams[1];
+        var r1 = row(t1), r2 = row(t2);
+        var g1 = g.goals[t1], g2 = g.goals[t2];
+        r1.gf += g1; r1.ga += g2;
+        r2.gf += g2; r2.ga += g1;
+        if (g1 > g2) { r1.w++; r1.pts += 3; r2.l++; }
+        else if (g2 > g1) { r2.w++; r2.pts += 3; r1.l++; }
+        else { r1.d++; r2.d++; r1.pts++; r2.pts++; }
+      });
+      return Object.keys(table).map(function (t) { return table[t]; }).sort(function (a, b) {
+        if (b.pts !== a.pts) return b.pts - a.pts;
+        return (b.gf - b.ga) - (a.gf - a.ga);
+      });
+    }
+
+    function getGoldenBoot(games) {
+      var tally = {};
+      games.forEach(function (g) {
+        Object.keys(g.scorers).forEach(function (team) {
+          g.scorers[team].forEach(function (name) {
+            if (!tally[name]) tally[name] = { name: name, team: team, goals: 0 };
+            tally[name].goals++;
+          });
+        });
+      });
+      return Object.keys(tally).map(function (n) { return tally[n]; }).sort(function (a, b) { return b.goals - a.goals; });
+    }
+
+    function getGoldenTeam(games) {
+      var sets = {};
+      games.forEach(function (g) {
+        Object.keys(g.scorers).forEach(function (team) {
+          if (!sets[team]) sets[team] = new Set();
+          g.scorers[team].forEach(function (name) { sets[team].add(name); });
+        });
+      });
+      return Object.keys(sets).map(function (team) {
+        return { team: team, count: sets[team].size, scorers: Array.from(sets[team]).sort() };
+      }).sort(function (a, b) { return b.count - a.count; });
+    }
+
+    function renderStats() {
+      var games = parseGames();
+      if (!games.length) return;
+
+      var standingsBody = document.getElementById('standingsBody');
+      standingsBody.innerHTML = getStandings(games).map(function (r) {
+        // GF/GA/GD are computed above (getStandings) and used for tiebreak sorting,
+        // but kept off the public table per team feedback — too noisy to display.
+        var cc = CC[r.team] || '';
+        return '<tr><td class="' + cc + '">' + r.team + '</td><td>' + r.w + '</td><td>' + r.d + '</td><td>' + r.l + '</td><td><strong>' + r.pts + '</strong></td></tr>';
+      }).join('');
+
+      function rankedList(rows, valueKey, valueLabel) {
+        var html = '';
+        var rank = 0, prevVal = null;
+        rows.forEach(function (r, i) {
+          if (r[valueKey] !== prevVal) { rank = i + 1; prevVal = r[valueKey]; }
+          var cc = CC[r.team] || '';
+          var name = r.name ? '<span class="leader-name">' + r.name + '</span>' : '<span class="leader-name ' + cc + '">' + r.team + '</span>';
+          var sub = r.name ? '<span class="leader-team ' + cc + '">' + r.team + '</span>' : '';
+          html += '<li><span class="leader-rank">' + rank + '</span>' + name + sub + '<span class="leader-goals">' + r[valueKey] + valueLabel + '</span></li>';
+        });
+        return html;
+      }
+      document.getElementById('goldenBootList').innerHTML = rankedList(getGoldenBoot(games), 'goals', '');
+
+      var goldenTeamHtml = '';
+      var gtRank = 0, gtPrevVal = null;
+      getGoldenTeam(games).forEach(function (r, i) {
+        if (r.count !== gtPrevVal) { gtRank = i + 1; gtPrevVal = r.count; }
+        var cc = CC[r.team] || '';
+        goldenTeamHtml += '<li><span class="leader-rank">' + gtRank + '</span><div class="leader-body"><div class="leader-row"><span class="leader-name ' + cc + '">' + r.team + '</span><span class="leader-goals">' + r.count + '</span></div><div class="leader-scorers">' + r.scorers.join(', ') + '</div></div></li>';
+      });
+      document.getElementById('goldenTeamList').innerHTML = goldenTeamHtml;
+
+      var byDay = {};
+      games.forEach(function (g) { (byDay[g.day] = byDay[g.day] || []).push(g); });
+      var days = Object.keys(byDay).map(Number).sort(function (a, b) { return b - a; });
+      var html = '';
+      days.forEach(function (day) {
+        var byGame = {};
+        byDay[day].forEach(function (g) { (byGame[g.game] = byGame[g.game] || []).push(g); });
+        var gameNums = Object.keys(byGame).map(Number).sort(function (a, b) { return a - b; });
+        html += '<div class="match-day"><div class="match-day-label">Game Day ' + day + '</div>';
+        gameNums.forEach(function (gameNum) {
+          html += '<div class="match-round-label">Game ' + gameNum + '</div>';
+          byGame[gameNum].slice().sort(function (a, b) { return a.field - b.field; }).forEach(function (g) {
+            var t1 = g.teams[0], t2 = g.teams[1];
+            var g1 = g.goals[t1], g2 = g.goals[t2];
+            var swing = g1 === g2 ? '+1 each' : (g1 > g2 ? t1 : t2) + ' +3';
+            var scorerNames = g.scorers[t1].concat(g.scorers[t2]);
+            var scorerLine = scorerNames.length
+              ? '<div class="match-game-scorers">' + scorerNames.join(', ') + '</div>'
+              : '<div class="match-game-scorers">No goals</div>';
+            html += '<div class="match-game"><div class="match-game-row"><span class="field">Field ' + g.field + '</span><span class="' + (CC[t1] || '') + '">' + t1 + '</span><span class="score">' + g1 + ' – ' + g2 + '</span><span class="' + (CC[t2] || '') + '">' + t2 + '</span><span class="swing">' + swing + '</span></div>' + scorerLine + '</div>';
+          });
+        });
+        html += '</div>';
+      });
+      document.getElementById('matchHistory').innerHTML = html;
+    }
+
+    renderStats();
   </script>
 
 </body>
