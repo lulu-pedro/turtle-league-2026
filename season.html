@@ -66,12 +66,15 @@
     .rsvp-cta { display: inline-block; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: white; background: #1a472a; border-radius: 6px; padding: 14px 28px; transition: background 0.18s; }
     .rsvp-cta:hover { background: #143620; }
 
+    .option-card { background: #fff; border-radius: 8px; padding: 26px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    .option-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #1a472a; margin-bottom: 14px; }
+
     /* Tabs */
     .tab-buttons { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
     .tab-btn {
       font: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
       color: #999; background: white; border: 1px solid #e0e0d8; border-radius: 999px; padding: 10px 22px;
-      cursor: pointer; transition: all 0.18s;
+      cursor: pointer; transition: all 0.18s; display: inline-block; text-decoration: none;
     }
     .tab-btn:hover { color: #1a472a; border-color: #1a472a; }
     .tab-btn.active { color: white; background: #1a472a; border-color: #1a472a; }
@@ -92,6 +95,8 @@
     .schedule-game .vs { font-weight: 700; color: #999; margin: 0 8px; }
     .schedule-day.playoff .schedule-game { background: #fdf6e8; }
     .schedule-note { font-size: 13px; color: #999; margin-top: 10px; }
+    .schedule-rsvp-btn { display: inline-block; margin: 4px 0 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: white; background: #1a472a; border-radius: 999px; padding: 6px 14px; text-decoration: none; white-space: nowrap; }
+    .schedule-rsvp-btn:hover { background: #143620; }
 
     /* Team colors */
     .tc-orange { color: #d97000; }
@@ -155,6 +160,7 @@
             <a href="summer-2026.html">Summer 2026</a>
           </div>
         </div>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -171,16 +177,17 @@
     <!-- TABS -->
     <div style="padding: 0 24px 8px; background: #F9F8F6;">
       <div class="tab-buttons">
-        <button class="tab-btn active" data-tab="teams" onclick="showTab('teams')">Teams</button>
-        <button class="tab-btn" data-tab="schedule" onclick="showTab('schedule')">Schedule</button>
-        <button class="tab-btn" data-tab="stats" onclick="showTab('stats')">Stats</button>
+        <a class="tab-btn active" data-tab="schedule" href="#schedule">Schedule</a>
+        <a class="tab-btn" data-tab="stats" href="#stats">Stats</a>
+        <a class="tab-btn" data-tab="teams" href="#teams">Teams</a>
+        <a class="tab-btn" data-tab="free-agents" href="#free-agents">Free Agents</a>
       </div>
     </div>
 
     <!-- ============================================================= -->
     <!-- TAB: TEAMS                                                     -->
     <!-- ============================================================= -->
-    <div id="tab-teams" class="tab-panel active">
+    <div id="tab-teams" class="tab-panel">
 
     <!-- TEAMS -->
     <section style="padding: clamp(32px, 5vw, 56px) 24px; background: white; border-top: 1px solid #eee;">
@@ -249,14 +256,14 @@
     <!-- ============================================================= -->
     <!-- TAB: SCHEDULE                                                  -->
     <!-- ============================================================= -->
-    <div id="tab-schedule" class="tab-panel">
+    <div id="tab-schedule" class="tab-panel active">
 
     <section style="padding: clamp(32px, 5vw, 56px) 24px; background: #F9F8F6; border-top: 1px solid #eee;">
       <div style="max-width: 720px; margin: 0 auto;">
         <h2 style="font-family: 'Bitter', serif; font-weight: 600; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 24px; text-align: center;">Schedule</h2>
 
         <div class="schedule-day">
-          <div class="schedule-day-header"><h3>Game Day 1</h3><span class="schedule-day-date">Tue, Sept 8</span></div>
+          <div class="schedule-day-header" data-day="1"><h3>Game Day 1</h3><span class="schedule-day-date">Tue, Sept 8</span></div>
           <hr class="schedule-day-divider">
           <div class="schedule-round">
             <div class="schedule-round-label">Game 1</div>
@@ -271,7 +278,7 @@
         </div>
 
         <div class="schedule-day">
-          <div class="schedule-day-header"><h3>Game Day 2</h3><span class="schedule-day-date">Tue, Sept 15</span></div>
+          <div class="schedule-day-header" data-day="2"><h3>Game Day 2</h3><span class="schedule-day-date">Tue, Sept 15</span></div>
           <hr class="schedule-day-divider">
           <div class="schedule-round">
             <div class="schedule-round-label">Game 1</div>
@@ -286,7 +293,7 @@
         </div>
 
         <div class="schedule-day">
-          <div class="schedule-day-header"><h3>Game Day 3</h3><span class="schedule-day-date">Tue, Sept 22</span></div>
+          <div class="schedule-day-header" data-day="3"><h3>Game Day 3</h3><span class="schedule-day-date">Tue, Sept 22</span></div>
           <hr class="schedule-day-divider">
           <div class="schedule-round">
             <div class="schedule-round-label">Game 1</div>
@@ -301,7 +308,7 @@
         </div>
 
         <div class="schedule-day">
-          <div class="schedule-day-header"><h3>Game Day 4</h3><span class="schedule-day-date">Tue, Sept 29</span></div>
+          <div class="schedule-day-header" data-day="4"><h3>Game Day 4</h3><span class="schedule-day-date">Tue, Sept 29</span></div>
           <hr class="schedule-day-divider">
           <div class="schedule-round">
             <div class="schedule-round-label">Game 1</div>
@@ -312,7 +319,7 @@
         </div>
 
         <div class="schedule-day">
-          <div class="schedule-day-header"><h3>Game Day 5</h3><span class="schedule-day-date">Tue, Oct 6</span></div>
+          <div class="schedule-day-header" data-day="5"><h3>Game Day 5</h3><span class="schedule-day-date">Tue, Oct 6</span></div>
           <hr class="schedule-day-divider">
           <div class="schedule-round">
             <div class="schedule-round-label">Game 1</div>
@@ -387,14 +394,42 @@
 
     </div>
 
-    <!-- RSVP CTA -->
-    <section style="padding: clamp(32px, 5vw, 56px) 24px; background: #eef5e9; border-top: 1px solid #eee; text-align: center;">
-      <div style="max-width: 720px; margin: 0 auto;">
-        <h2 style="font-family: 'Bitter', serif; font-weight: 600; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 16px;">Want to play?</h2>
-        <p style="font-size: 15px; color: #666; margin-bottom: 24px;">Teams are set but we are looking for Free Agents each week.</p>
-        <a href="fall-2026-rsvp.html" class="rsvp-cta">RSVP for Fall 2026 →</a>
-      </div>
-    </section>
+    <!-- ============================================================= -->
+    <!-- TAB: FREE AGENTS                                               -->
+    <!-- ============================================================= -->
+    <div id="tab-free-agents" class="tab-panel">
+
+      <section style="padding: clamp(32px, 5vw, 56px) 24px; background: white; border-top: 1px solid #eee;">
+        <div style="max-width: 560px; margin: 0 auto;">
+          <h2 style="font-family: 'Bitter', serif; font-weight: 600; font-size: clamp(20px, 3vw, 26px); color: #1a472a; margin-bottom: 16px; text-align: center;">Play as a Free Agent</h2>
+          <p style="font-size: 15px; line-height: 1.7; color: #555; margin-bottom: 24px; text-align: center;">Teams are set for Fall 2026, but we're looking for Free Agents every week to fill in for rostered players who are out.</p>
+
+          <div class="option-card" style="margin-bottom: 16px;">
+            <div class="option-label">How it works</div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; padding: 0;">
+              <li style="display: flex; gap: 8px; font-size: 14px; line-height: 1.6; color: #555;"><span style="color: #1a472a; flex-shrink: 0;">✓</span>Rostered players have Wednesday through Friday to confirm their RSVP for that week's game</li>
+              <li style="display: flex; gap: 8px; font-size: 14px; line-height: 1.6; color: #555;"><span style="color: #1a472a; flex-shrink: 0;">✓</span>Any open spots go to Free Agents starting Saturday at noon, based on how many players are out</li>
+              <li style="display: flex; gap: 8px; font-size: 14px; line-height: 1.6; color: #555;"><span style="color: #1a472a; flex-shrink: 0;">✓</span>Free Agents pay $4.99 per game</li>
+            </ul>
+          </div>
+
+          <div class="option-card">
+            <div class="option-label">To play</div>
+            <ol style="display: flex; flex-direction: column; gap: 10px; padding-left: 18px; margin: 0;">
+              <li style="font-size: 14px; line-height: 1.6; color: #555;">Register as a Free Agent on the Luma calendar (one time, gets you approved)</li>
+              <li style="font-size: 14px; line-height: 1.6; color: #555;">Once approved, sign up for each game day you want to play (spots are limited, so sign up as soon as they open)</li>
+            </ol>
+          </div>
+
+          <p style="font-size: 13px; line-height: 1.6; color: #999; margin: 20px 0 0; padding: 14px 18px; background: #F9F8F6; border-radius: 6px;"><strong style="color: #555;">Important:</strong> You still need to be a PPS Meetup member to participate. The link to your Meetup profile will be required when you register.</p>
+
+          <div style="text-align: center; margin-top: 28px;">
+            <a href="https://luma.com/pps-turtle-league-fall-2026" class="rsvp-cta" target="_blank" rel="noopener">Sign Up on the Luma Calendar →</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
 
     <!-- FOOTER -->
     <footer style="background: #111; padding: 32px 24px;">
@@ -405,6 +440,7 @@
           <a href="testimonials.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Testimonials</a>
           <a href="season.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Fall 2026</a>
           <a href="summer-2026.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Summer 2026</a>
+          <a href="contact.html" style="color: #666; font-size: 12px; text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;">Contact</a>
         </div>
         <span style="font-size: 12px; color: #444;">© 2026 Prospect Park Soccer</span>
       </div>
@@ -413,6 +449,8 @@
   </div>
 
   <script>
+    var TAB_NAMES = ['schedule', 'stats', 'teams', 'free-agents'];
+
     function showTab(name) {
       document.querySelectorAll('.tab-panel').forEach(function (el) {
         el.classList.toggle('active', el.id === 'tab-' + name);
@@ -422,10 +460,46 @@
       });
     }
 
+    function tabFromHash() {
+      var name = (window.location.hash || '').replace('#', '');
+      return TAB_NAMES.indexOf(name) !== -1 ? name : 'schedule';
+    }
+
+    showTab(tabFromHash());
+    window.addEventListener('hashchange', function () { showTab(tabFromHash()); });
+
     document.addEventListener('click', function (e) {
       var dropdown = document.getElementById('pastSeasonsDropdown');
       if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
     });
+
+    // ===================================================================
+    // FREE AGENT SIGNUP — each game day has its own weekly Luma event.
+    // Add a day's link here as soon as it's available; the matching
+    // schedule day picks up a "RSVP on Luma" button automatically.
+    // (The Free Agents tab and bottom CTA link to the season-wide Luma
+    // calendar instead, since that lists every open game day at once.)
+    // ===================================================================
+    var GAMEDAY_LUMA = {
+      2: 'https://luma.com/rvb2snew',
+      3: 'https://luma.com/z1na7iz0'
+    };
+
+    function renderFreeAgentLinks() {
+      document.querySelectorAll('.schedule-day-header[data-day]').forEach(function (el) {
+        var url = GAMEDAY_LUMA[Number(el.dataset.day)];
+        if (!url) return;
+        var a = document.createElement('a');
+        a.className = 'schedule-rsvp-btn';
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = 'RSVP on Luma →';
+        el.parentNode.insertBefore(a, el.nextSibling);
+      });
+    }
+
+    renderFreeAgentLinks();
 
     // ===================================================================
     // STATS — source of truth is GAME_DATA. Everything else (standings,
